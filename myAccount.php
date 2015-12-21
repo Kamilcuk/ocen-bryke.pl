@@ -18,7 +18,8 @@
 		   $email=$info["e-mail"];
 		   
 		   //$wiek=$info[""];
-		   
+		  
+ 
 		}
 		?>
 		<body class='frame'>
