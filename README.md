@@ -1,1 +1,0 @@
-# ocen-bryke.pl
