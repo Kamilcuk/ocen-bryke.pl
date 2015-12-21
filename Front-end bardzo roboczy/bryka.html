@@ -1,0 +1,136 @@
+<html>
+	<head>
+		<title>Ocen-bryke.pl</title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<link rel='stylesheet' type='text/css' href='style.css'>
+		<script type='text/javascript'>
+			function resize(id){
+				var iframe = document.getElementById(id);
+				iframe.style.height = '0px';
+				iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+
+				var wrap = document.getElementById('wrapper');
+				wrap.style.height = '0px';
+				wrap.style.height = '100%'
+				if(iframe.style.height > wrap.style.height)
+					wrap.style.height = document.height;//iframe.style.height;
+			}
+		</script>
+	</head>
+	<body>	
+		
+		<header>
+			<h1 class='title'>Ocen-bryke.pl</h1>
+		</header>
+
+		<div id='wrapper'>
+			<nav>
+			
+				<ul class='navbar'>
+					<li class='navbar'>
+						<div id='triangle-topright'></div>
+					</li>
+					<li class='navbar'>
+						<a class='navbar_link' target='content_iframe' href='news.php' onClick="resize('content_iframe')">
+							Nowe
+						</a>
+					</li> <!-- TODO - to sie zmienia w zaleznosci czy zalogowany -->
+					<li class='navbar'>
+						<a class='navbar_link' target='content_iframe' href='login.php' onClick="resize('content_iframe')">
+							Zaloguj
+						</a>
+					</li>
+					<li class='navbar'>
+						<a class='navbar_link' target='content_iframe' href='find.php' onClick="resize('content_iframe')">
+							Wyszukaj
+						</a>
+					</li>
+					<li class='navbar'>
+						<div id='triangle-topleft'></div>
+					</li>
+				</ul>
+
+			</nav>
+			<article>
+				<iframe id='content_iframe' name='content_iframe' src='news.php' onLoad="resize('content_iframe')"></iframe>
+			</article>
+
+		</div>
+		
+		<div id="sidebarL">	
+			<h2> Menu: </h2>
+				<ul class='navbar2'>
+					<li class='navbar2'>
+						<a class='navbar2_link' target='content_iframe' href='user_account'.php' onClick="resize('content_iframe')">
+							Moje konto
+						</a>	
+					</li>
+					<li class='navbar2'>
+						<a class='navbar2_link' target='content_iframe' href='car.php'.php' onClick="resize('content_iframe')">
+							Moja bryka
+						</a>
+					</li>
+					<li class='navbar2'>
+					<a class='navbar2_link' target='content_iframe' href='photo.php' onClick="resize('content_iframe')">
+							Moje zdjęcia
+						</a>
+					</li>
+				</ul>					
+				
+		</div>
+		
+		<div id="sidebarR">
+		
+		</div>
+		
+		<div id="main">
+			<h3>Jest chujowo, ale poprawię się</h3>
+			<div class="picture">
+				<h4>Fura</h4>
+				<img src="bryka_p.jpg" alt="Multipla" width="50%" height="50%"> 
+			</div>
+			
+			
+			<div class="comment">
+			    <h5>Komentarze:</h5>
+			
+		<form>
+            
+			<label>Komentarz</label>
+				<textarea name="message" placeholder="Napisz tu komentarz"></textarea>       
+				<input id="submit" name="submit" type="submit" value="Opublikuj">
+		</form>
+					
+				<ul class='com_r'>
+				    <li class='com_r'>
+						<div class='user'>
+						Golf 3
+						</div>
+					</li>
+					<li class="com_r">
+					   <div class="comment_text">
+						Ale rzęch!
+						</div>	
+					</li>
+					<li class="com_r">
+						<a class='comment_like' target='content_iframe' href='like.php'.php' onClick="resize('content_iframe')">
+							Dobrze gada
+						</a>
+					</li>
+					<li class="com_r">
+					<a class='comment_dislike' target='content_iframe' href='like.php' onClick="resize('content_iframe')">
+							Pierdolenie
+						</a>
+					</li>
+				</ul>		
+					
+			</div>
+		</div>
+
+		<p><?php echo 'dupadupadupaphp 123'; ?></p>
+
+	</body>
+</html>
+
+
+

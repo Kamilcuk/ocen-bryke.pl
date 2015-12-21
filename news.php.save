@@ -1,0 +1,23 @@
+<?php
+	require_once('user.inc');
+    session_start();
+?>
+<html>
+	<head>
+        <title>Oce&#324;-bryke.pl</title>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+	</hed>
+	<body class='frame'>
+		<h1>jestem news.php</h1>
+		CO JEST DO ZROBIENIA:
+
+		CUKIER 
+		<ul>
+		<li> poprawic uprawnienia do folderu /uploads/ (wymaga to sudo, wiec ja nie moge); obecnie jest
+		777 ale to nie jest dobre ofc. 
+http://stackoverflow.com/questions/25422366/php-move-uploaded-file-permission-denied-permission-set-to-755
+		w skrocie chown ten folder na php usera i daj mu 755
+		<li> w tryUpload.php trzeba dodac query ktory dodaje fotke do samochodu po naz
+
+	</body>
+</html>

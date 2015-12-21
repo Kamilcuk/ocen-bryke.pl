@@ -1,0 +1,224 @@
+
+<?php
+function getDbSortuj($table, $czyje=null, $rozroznianego=null, $potym=null, $poczym=null, $wktorastrone=null) {
+	$table='';
+	$where='';
+	$sort='';
+	switch($table) {
+		case "samochody":
+			$table = 'Samochod';
+			if ( $poczym != null ) {
+					$sort = " ORDER BY ".$poczym;
+			}
+			break;
+		case "uzytkowników":
+		case "uzytkownik":
+		case "uzytkownikow":
+		case "uzytkownika":
+			$table = "Uzytkownik";
+			break;
+	}
+	switch($czyje) {
+		case "uzytkownika":
+		case "uzytkownik":
+			switch($rozroznianego) {
+				case "id":
+					$where=" ID_uzytkownika =".$potym." ";
+					break;
+				case "nick":
+					$id=(new db())->queryone(
+						"select ID_uzytkownika from Uzytkownik where nick = '".$potym."'")["ID_uzytkownika"];
+					$where=" ID_uzytkownika =".$id." ";
+					break;
+			}
+			break;
+		case "samochod":
+			switch($rozroznianego) {
+				case "ID_uzytkownika":
+					$where=" ID_uzytkownika =".$potym." ";
+					break;
+			}
+			break;
+		default:
+			break;
+	}
+	if ( strlen($sort) ) {
+		switch($wktorastrone) {
+			case "malejaco":
+				$sort=$sort." DESC ";
+				break;
+			case "rosnaco":
+				$sort=$sort." ASC ";
+				break;
+		}
+	}
+	if ( $where != null )
+		$where = " where ".$where; 
+	return (new db())->query("select * from ".$table.$where.$sort);
+}
+function szukaj($table, $czyje=null, $rozroznianego=null, $potym=null, $poczym=null, $wktorastrone=null) {
+	if ( $poczym != null )
+		$sort = " ORDER BY ".$poczym.' '.$wktorastrone.' ';
+	switch($czyje) {
+		case "uzytkownika":
+		case "uzytkownik":
+			switch($rozroznianego) {
+				case "id":
+					$where=" ID_uzytkownika =".$potym." ";
+				break;
+				case "nick" :
+					$id = (new db ())->queryone ( "select ID_uzytkownika from Uzytkownik where nick = '" . $potym . "'" ) ["ID_uzytkownika"];
+					$where = " ID_uzytkownika =" . $id . " ";
+					break;
+			}
+			break;
+		case "samochod" :
+			switch ($rozroznianego) {
+				case "ID_uzytkownika":
+				case "ID_marki":
+					$where = " ID_uzytkownika =" . $potym . " ";
+					break;
+			}
+			break;
+		default :
+			break;
+	}
+	if ( !isset($where) )
+		$where=null;
+	if ( $where != null)
+		$where = " where " . $where;
+	return (new db())->query ( "select * from " . $table . $where . $sort );
+}
+(new db())->setDebug(1);
+//foreach(getDbSortuj("samochody", "uzytkownika", "nick", "kamil", "oceny_pozytywne", "rosnaco") as $row)
+//	print_r($row);
+//foreach(getDbSortuj("uzytkownika", "samochod", "ID_uzytkownika", "19", "oceny_pozytywne", "rosnaco") as $row)
+//	print_r($row);
+foreach(szukaj("Samochod", "", "", "", "oceny_pozytywne", "ASC") as $row)
+	print_r($row);
+foreach(szukaj("Samochod", "Marki", "ID_marki", "1", "oceny_pozytywne", "ASC") as $row)
+	print_r($row);
+global $db;
+$db->escape("nkjfdnkfd");
+$db->query("nkjfdnkfd");
+(new db())->escape("nkjfdnkfd");
+(new db())->escape("nkjfdnkfd");
+(new db())->escape("nkjfdnkfd");
+(new db())->query("nkjfdnkfd");
+
+die();
+
+class dbconnect {
+	private $id = null;
+	public function __construct($id = null) {
+		if ( $id != null )
+			$this->setId($id);
+	}
+	function __destruct() {
+	}
+	function setId($id) {
+		global $db;
+		$self = get_called_class();
+		if ( !is_int($id) ) return;
+		$id = $db->escape($id);
+		$query = $db->queryone(
+				'select ID_'.$self::dopel.' from '.$self::table.' where ID_'.$self::dopel.' = '.$id);
+		if ( sizeof($query) != 1 ) {
+			echo 'Błędna wartość ID ='.$id.' w '.$self::table.' ->setId \n';
+			return;
+		}
+		$this->id = $query['ID_'.$self::dopel];
+	}
+	function getInfo() {
+		global $db;
+		$self = get_called_class();
+		return $db->query(
+				'select * from '.$self::table.' where ID_'.$self::dopel.' = '.$this->id);
+	}
+	function getAll() {
+		global $db;
+		$self = get_called_class();
+		return $db->query(
+				'select * from '.$self::table);
+	}
+}
+
+class Samochod extends dbconnect {
+	const table = 'Samochod';
+	const dopel = 'samochodu';
+}
+
+class Komentarz {
+	private $id;
+	public function __construct(array $args = array()) {
+		setId($args[0]);
+	}
+	function __destruct() {
+	}
+	function setId($id) {
+		global $db;
+		if ( !is_int($id) ) return;
+		$id = $db->escape($id);
+		$query = $db->queryone('select ID_komentarza from Komentarz where ID_komentarza = '.$id);
+		if ( sizeof($query) != 1 ) {
+			echo 'Błędna wartość ID_komentarza ='.$id.' w komentarz->setId \n';
+			return;
+		}
+		$this->id = $query['ID_samochodu'];
+	}
+};
+class Marka {
+	const table = 'Marka';
+	const dopel = 'marki';
+	private $id = null;
+	public function __construct($id = null) {
+		if ( $id != null )
+			$this->setId($id);
+	}
+	function __destruct() {
+	}
+	function setId($id) {
+		global $db;
+		if ( !is_int($id) ) return;
+		$id = $db->escape($id);
+		$query = $db->queryone(
+				'select ID_'.self::$dopel.' from '.self::table.' where ID_'.self::dopel.' = '.$id);
+		if ( sizeof($query) != 1 ) {
+			echo 'Błędna wartość ID ='.$id.' w '.self::table.' ->setId \n';
+			return;
+		}
+		$this->id = $query['ID_'.self::dopel];
+	}
+	function getInfo() {
+		global $db;
+		return $db->query(
+				'select * from '.self::table.' where ID_'.self::dopel.' = '.$this->id);
+	}
+	function getAll() {
+		global $db;
+		return $db->query(
+				'select * from '.self::table);
+	}
+};
+
+$db->setDebug(1);
+echo " 1 \n";
+$jeden = new Samochod(5);
+echo " 2 \n";
+print_r($jeden.getAll()[0]);
+echo " 3 \n";
+die();
+
+$jeden = new Marka();
+echo "\n";
+$rows = $db->query('select * from Uzytkownik');
+echo sizeof($rows);
+foreach($jeden->getAll() as $row)
+	print_r($row);
+(new db())->query('select * from Uzytkownik');
+?>
+
+
+
+
+

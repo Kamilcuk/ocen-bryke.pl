@@ -1,0 +1,470 @@
+body 
+{
+margin: 0 0 0 0;	
+font: 15px Georgia;
+background-color: #222;
+line-height: 1.5;
+}
+
+
+body.frame
+{
+background-color: rgba(0, 0, 0, 0);
+height: auto;
+}
+
+
+
+h1 
+{
+    
+color: orange;
+    
+text-align: center;
+}
+
+
+
+{
+font-family: "Times New Roman";
+    
+font-size: 20px;
+	
+color: red;
+}
+
+
+
+
+header
+{
+	
+ height: 100px;
+
+ background-color: #8a0600;
+ text-padding: 10px 0 auto 0;
+
+ margin-bottom: 0;
+}
+
+
+h1.title
+{
+
+ font: bold italic 30px "atrament-web-1","atrament-web-2", Georgia, Serif;
+
+ padding: 25px;
+}
+
+
+
+
+#wrapper
+{
+	
+ margin: auto;
+ width: 1000px;
+	
+ height: auto;
+ -webkit-box-shadow: inset 0 0 20px rgba(0,0,0, 0.3);
+	
+ padding-bottom: 20px;
+	
+ background-color: #eee;
+}
+
+
+
+
+nav 
+{
+ width: 1000px;
+ margin: auto;
+}
+
+
+#triangle-topleft {
+	
+ width: 0;
+	
+ height: 0;
+	
+ border-top: 50px solid #8a0600;
+	
+ border-right: 50px solid transparent;
+}
+
+
+#triangle-topright {
+	
+ width: 0;
+	
+ height: 0;
+	
+ border-top: 50px solid #8a0600;
+	
+ border-left: 50px solid transparent;
+} 
+
+ul.navbar
+{
+ width: 800px;	
+ margin: auto;
+ list-style-type: none;
+}
+
+
+li.navbar
+{
+ float: left;
+}
+
+
+a.navbar_link
+{
+	
+ color: white;
+	
+ background-color: #8a0600;
+	
+ display: block;
+
+ width: 125px;
+	
+ height: 50px;
+	
+ text-decoration: none;
+	
+ text-align: center;
+	
+ padding: 0;	
+}
+
+
+a.navbar_link:hover
+{
+	
+ background-color: #95160A;
+}
+
+
+
+
+
+
+iframe 
+{
+	
+ width: 800px;
+	
+ border-width: 0px;
+}
+
+
+
+
+article
+{
+	
+ width: 800px;
+	
+ margin: 0px auto;
+	
+ clear: both;
+}
+
+
+#sidebarL
+{
+ position: absolute;
+ top: 108px;
+ left: 5px;
+ width: 170px;
+ height: 800px;
+
+ background-color: black; 
+ display: block;
+ margin-left: 2px; 
+ padding: 3px;}
+
+#sidebarL h2{
+ background-color: #1a0600;
+ display: block;
+ color: white;
+ padding: 16px;
+ margin-top: 0px;
+ margin-bottom: 2px;}
+
+#sidebarL nav 
+{
+ display: block;	
+ width: auto;
+ padding: 0px;}
+
+
+#sidebarL ul.navbar2{
+ position: relative;
+ margin: 0;
+ padding: 0px;
+ list-style-type: none;}
+
+
+#sidebarL li.navbar2{
+ float: left;
+ padding: 0px;
+ margin-bottom: 2px;}
+
+#sidebarL a.navbar2_link
+{
+ color: white;
+ background-color: #1a0600;
+ display: block;
+ width: 150px;
+ height: 30px;
+ text-decoration: none;
+ text-align: left;
+ padding: 10px;}
+
+
+#sidebarL a.navbar2_link:hover
+{
+ background-color: #65160A;
+}
+
+#sidebarR
+{
+ position: absolute;
+ top: 108px;
+ right: 5px;
+ width: 170px;
+ height: 800px;
+ border: 1px solid black;	
+ background-color: black;
+ display: block;
+ margin-left: 2px; 
+ padding: 3px;}
+ 
+ .main{
+ position: absolute;
+ display: inline;
+ top: 200px;
+ left: 200px;
+ padding: 10px;
+ width: 934px;
+ height: 700px;
+ text-align: center;
+ background-color: rgb(210,210,210);
+ }
+ 
+ #main h3{
+	 position: relative;
+	 display: block;
+	 text-align: center;
+	 background-color: white;
+ }
+ 
+ #main picture {
+  display: inline;
+  width: 800px;
+  height: 300px;
+  margin-bottom: 100px;
+ }
+ 
+  #main h4{
+	 display: block;
+	 text-align: center;
+ }
+ 
+comment{
+	position: relative;
+	top: 400px;
+	left: 200px;
+	display: box;
+	text-align: center;
+ }
+h5{
+	 position: relative;
+	 top: 1px;
+	 left:0px;
+	 text-align: center;
+	 display: box;
+	 width: auto;
+	 padding: 5px;
+	 background-color: rgb(220,220,220);
+ }
+ 
+ul.com_r {
+  width: auto;
+  list-style-type: none;
+ 
+}
+
+li.com_r{
+  list-style-type: none;
+  position: relative;
+  top: 40px;  
+  display: box;	
+  float: left;
+  padding: 0px;
+  margin: 0px;
+  width: auto;
+  border: 1px solid black;
+ 
+ }
+.comment_text{
+	 display: box;
+	 text-align: left;
+	 width: 300px;
+	 padding: 0px;
+	 margin: 0px;
+ }
+.newComment {/*źle*/
+        width:400px; 
+        margin:0 auto;
+        background-color:#fff;
+        border:2px solid #ccc;
+        border-radius:10px; 
+		padding:2px; 
+        margin-top:2px; 
+}
+  
+ .user{
+	 display: inline;
+	 float: left;
+	 width: 100px; 
+	 padding: 0px;
+	 margin: 0px;
+	 color: red;
+ }
+
+ #main a.comment_like
+{
+ position: relative;
+ left: 0px; 
+ color: white;
+ background-color: rgb(20,80,7);
+ display: box;
+ text-decoration: none;
+ text-align: center;
+ margin: 0px;
+ padding: 2px;
+ padding-bottom: 3px;}
+
+
+#main  a.comment_like:hover
+{
+ background-color: rgb(20,200,7);
+}
+ #main a.comment_dislike
+{
+ position: relative;
+ left: 0px; 
+ color: white;
+ background-color: #8a0600;
+ display: inline;
+ text-decoration: none;
+ text-align: center;
+ margin: 0px;
+ padding: 2px;
+ padding-bottom: 3px;}
+
+
+#main  a.comment_dislike:hover
+{
+ background-color: rgb(200,20,15);
+}
+    
+.Login {
+width: 400px; 
+margin: 0 auto; 
+padding: 15px 0 0;
+border: 1px solid silver;
+font: 16px calibri;
+letter-spacing: -1px;
+-webkit-box-shadow: 0 0 2px silver; 
+-moz-box-shadow: 0 0 2px silver; 
+box-shadow: 0 0 2px silver;
+}
+form {
+margin: 0;
+}
+
+a.link
+{
+	
+ font-size: 20px;	
+ color: white;
+ background-color: #8a0600;
+ display: block;
+ width: 125px;
+ height: 30px;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;	
+}
+
+a.navbar_link:hover
+{
+	
+ background-color: #95160A;
+}
+
+label  {
+display: block;
+width: 200px;
+padding: 50px 10px;
+color: #696969;
+font: 20px calibri;
+text-shadow: 0 0 1px silver;
+}
+
+.error{
+display: block;
+width: 260px;
+padding: 10px 20px;
+color: red;
+font-size: 20px;
+text-shadow: 0 0 1px silver;	
+}
+.ok{
+display: block;
+width: 260px;
+padding: 10px 20px;
+color: green;
+font-size: 20px;
+text-shadow: 0 0 1px silver;	
+}
+.Labels {
+width: 500px; 
+float: left;
+margin: auto; 
+padding: 1px 0 0;
+border: 1px solid silver;
+font: 20px calibri;
+letter-spacing: -1px;
+-webkit-box-shadow: 0 0 2px silver; 
+-moz-box-shadow: 0 0 2px silver; 
+box-shadow: 0 0 2px silver;
+}
+
+
+.Labels  > ul{
+ width: 100px;	
+ margin: auto;
+ padding: 10px 10px;
+ /*list-style-type: none;*/
+	
+}
+.Labels > li{
+display: block;
+margin: auto;
+width: 100px;
+padding: 0px 0px;
+color: #696969;
+font-size: 16px;
+text-shadow: 0 0 1px silver;
+	
+}
+
+
+

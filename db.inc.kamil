@@ -1,0 +1,63 @@
+<?php
+
+$settings = array (
+		'host' => '127.0.0.1',
+		'user' => 'projekt',
+		'pass' => 'projekt123',
+		'database' => 'projekt'
+);
+
+class db 
+{
+	private $mysqli = NULL;
+   
+	public function __construct(array $arguments = array()) 
+	{
+		$this->connect();
+	}
+	
+	function __destruct() 
+	{
+		$this->disconnect();
+	}
+
+	function connect() 
+	{
+		if ( $this->mysqli != NULL ) 
+		{
+			return;
+		}
+		global $settings;
+		$this->mysqli = new mysqli(
+				$settings['host'],
+				$settings['user'],
+				$settings['pass'],
+				$settings['database']);
+		// check connection
+		if ($this->mysqli->connect_errno) 
+		{
+			printf("DB MYSQLI Connect failed: %s \n", $this->mysqli->connect_error);
+			exit();
+		}
+	}
+
+	function disconnect() 
+	{
+		if ( $this->mysqli != NULL ) 
+		{
+			$this->mysqli->close();
+			$this->mysqli = NULL;
+		}
+	}
+
+	function query($query) 
+	{
+		$result = $this->mysqli->query($query);
+		if ( !is_object($result) ) return $result;
+		$row = $result->fetch_array(MYSQLI_ASSOC);
+		$result->close();
+		return $row;
+	}
+};
+
+?>
