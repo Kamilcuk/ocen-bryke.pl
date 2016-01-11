@@ -158,6 +158,7 @@ class user {
 				return db::insertInto($table, "ID_uzytkownika, ".$columns, $this->getId().", ".$values);
 			case "Marka":
 			case "Model":
+			case "Silnik":
 			case "Wersja":
 				return db::insertInto($table, $columns, $values);
 			case "Zdjecie":

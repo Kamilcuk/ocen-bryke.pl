@@ -11,11 +11,46 @@
 	<body class='frame'>
 		<h1>jestem myCars.php</h1>
 
-		<a href="upload.php">Dodaj fotke (TEST UPLOADU, NORMALNIE FOTKI CHCEMY DODAWAC DO SAMOCHODOW!)</a>
-		<a class='link' target='content_iframe' 
-				href='addCar.php' onClick="resizeUpdate()">
-				Dodaj brykę
-			</a>
+		<a class='link' target='content_iframe' href='addCar.php' onClick="resizeUpdate()">Dodaj samochód</a>
+		<a class='link' target='content_iframe' href='addMarka.php' onClick="resizeUpdate()">Dodaj markę samochodu</a>
+		<a class='link' target='content_iframe' href='addModel.php' onClick="resizeUpdate()">Dodaj model samochodu</a>
+		<a class='link' target='content_iframe' href='addSilnik.php' onClick="resizeUpdate()">Dodaj silnik samochodów</a>
+		<a class='link' target='content_iframe' href='addWersja.php' onClick="resizeUpdate()">Dodaj wersję samochodów</a>
+<?php //Kamnil Cukrowski
+//sdb::setDebug(10);
+$cars = db::query('select * from Samochod where ID_uzytkownika = '.$user->getID());
+foreach($cars as $car) {
+	echo "<div class='Labels'><ul>";
+	echo "<li>Wersja:".
+		db::queryone('select nazwa from Wersja where ID_wersji = '.$car['ID_wersji'])['nazwa'].'</li>';
+	echo "<li>Silnik:".
+		db::queryone('select symbol from Silnik where ID_silnika = '.$car['ID_silnika'])['symbol'].'</li>';
+	echo "<li>Model:".
+		db::queryone('select nazwa from Model where ID_modelu = '.$car['ID_modelu'])['nazwa'].'</li>';
+	echo "<li>Ilosc ocen pozytywnych:".
+		$car['oceny_pozytywne'].'</li>';
+	echo "<li>Marka:".
+		db::queryone('select nazwa from Marka where ID_marki = '.$car['ID_marki'])['nazwa'].'</li>';
+	echo "<li>Ilosc ocen negatywnych:".
+		$car['oceny_negatywne'].'</li>';
+	echo "<li>Przebieg:".
+		$car['przebieg'].'</li>';
+	echo "<li>Rok produkcji:".
+		$car['rok_produkcji'].'</li>';
+	echo "</ul>";
+	
+	echo '<br>';
+	echo '<a href="addZdjecie.php?ID_smochodu='.$car['ID_samochodu'].'">';
+	echo 'Dodaj fotke do tego samochodu</a>';
+	echo '<br>';
+	
+	echo "</div>";
+
+
+}
+?>
+<?php //Kamil Cukrowski nie wiem co to jest tu ponizej: 
+/*
 		<div class='Labels'>
 			<label for="inp">Marka:</label>
 			<label for="inp">Model:</label>
@@ -39,5 +74,7 @@
 			<li>dupa</li>
 		 </ul>
 		 </div>
+		 */
+?>
 	</body>
 </html>
