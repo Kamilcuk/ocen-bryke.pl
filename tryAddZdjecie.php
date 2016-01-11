@@ -10,7 +10,7 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
     </hed>
     <body class='frame'>
-        <h1>jestem tryUpload.php</h1>
+        <h1>jestem tryAddZdjecie.php</h1>
 
 		<?php
 			// Kamil Cukrowski, poprzedni plik jest w kamil/test/tryUpload.php <- ta linia do wykasowania jest
@@ -25,4 +25,8 @@
 
     </body>
 </html>
+
+	
+
+
 
