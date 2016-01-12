@@ -22,7 +22,9 @@ foreach($rows as $row) {
 	echo "<option>".$row['nazwa']."</option>"."\n";
 }
 ?>
-			</select></td></tr>
+			</select></td>
+			
+			<td><a class='link2' target='content_iframe' href='addModel.php' onClick="resizeUpdate()">Dodaj model samochodu</a></td></tr>
 						
 			<tr><td><label for="inp">Wersja:</label></td>
 			<td><select name="Wersja_nazwa">
@@ -32,7 +34,8 @@ foreach($rows as $row) {
 	echo "<option>".$row['nazwa']."</option>"."\n";
 }
 ?>
-			</select></td></tr>
+			</select></td>
+			<td><a class='link2' target='content_iframe' href='addWersja.php' onClick="resizeUpdate()">Dodaj wersję samochodu</a></td></tr></tr>
 			
 			<tr><td><label for="inp">Marka:</label></td>		
 			<td><select name="Marka_nazwa">
@@ -42,7 +45,8 @@ foreach($rows as $row) {
 	echo "<option>".$row['nazwa']."</option>"."\n";
 }
 ?>
-			</select></td></tr>
+			</select></td>
+			<td><a class='link2' target='content_iframe' href='addMarka.php' onClick="resizeUpdate()">Dodaj markę samochodu</a></td></tr>
 						
 			<tr><td><label for="inp">Symbol silnika:</label></td>		
 			<td><select name="Silnik_symbol">
@@ -52,7 +56,8 @@ foreach($rows as $row) {
 	echo "<option>".$row['symbol']."</option>"."\n";
 }
 ?>
-			</select></td></tr>
+			</select></td>
+			<td><a class='link2' target='content_iframe' href='addSilnik.php' onClick="resizeUpdate()">Dodaj typ silnika</a></td></tr>
 		
 			<tr><td><label for="inp">Marka_nazwa:</label></td>
 			<td><select name="Marka_nazwa">

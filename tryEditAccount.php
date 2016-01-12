@@ -16,19 +16,21 @@
 				echo $str.'<br>';
 				exit -1;
 			}
-			if ( !isset($_POST["ID_samochodu"]) ) {
-				fatal('Nie podano ID_samochodu do zdjecia');
+			if ( !isset($_POST["Uzytkownik_e_mail"]) ) {
+				fatal('Nie podano Uzytkownik_e_mail');
 			}
-			if ( !isset($_POST["Zdjecie_opis"]) ) {
-				fatal('Nie podano Zdjecie_opis do zdjecia');
+			if ( !isset($_POST["Uzytkownik_wiek"]) ) {
+				fatal('Nie podano Uzytkownik_wiek');
 			}
-			require_once('kamil/imageUpload.php');
-			$ret = upload_image($user, $_POST["ID_samochodu"], 
-					$_FILES["uploadedFile"], $_POST['Zdjecie_opis']);
-			if ( !is_numeric($ret) ) {
-				fatal('Upload zdjecia nieudany!');
+			$ret = db::query("UPDATE Uzytkownik ".
+					" set wiek = '".db::escape($_POST["Uzytkownik_wiek"])."'".
+					" , `e-mail` = '".db::escape($_POST["Uzytkownik_e_mail"])."'".
+					" where ID_uzytkownika = '".$user->getID()."'");
+			if ( $ret ) {
+				echo "Udalo sie!";
+			} else {
+				echo "Nie udalo sie!";
 			}
-			echo 'Upload zdjecia udany! <BR>';
 		?>
 
     </body>

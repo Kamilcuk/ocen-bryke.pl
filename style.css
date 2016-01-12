@@ -337,42 +337,6 @@ li.com_r{
 	 color: red;
  }
 
- #main a.comment_like
-{
- position: relative;
- left: 0px; 
- color: white;
- background-color: rgb(20,80,7);
- display: box;
- text-decoration: none;
- text-align: center;
- margin: 0px;
- padding: 2px;
- padding-bottom: 3px;}
-
-
-#main  a.comment_like:hover
-{
- background-color: rgb(20,200,7);
-}
- #main a.comment_dislike
-{
- position: relative;
- left: 0px; 
- color: white;
- background-color: #8a0600;
- display: inline;
- text-decoration: none;
- text-align: center;
- margin: 0px;
- padding: 2px;
- padding-bottom: 3px;}
-
-
-#main  a.comment_dislike:hover
-{
- background-color: rgb(200,20,15);
-}
     
 .Login {
 width: 400px; 
@@ -396,7 +360,7 @@ a.link
  color: white;
  background-color: #8a0600;
  display: block;
- width: 125px;
+ width: 200px;
  height: 30px;
  text-decoration: none;
  text-align: center;
@@ -445,26 +409,51 @@ letter-spacing: -1px;
 -webkit-box-shadow: 0 0 2px silver; 
 -moz-box-shadow: 0 0 2px silver; 
 box-shadow: 0 0 2px silver;
+list-style-type: none;
 }
 
 
-.Labels  > ul{
- width: 100px;	
- margin: auto;
- padding: 10px 10px;
- /*list-style-type: none;*/
-	
-}
-.Labels > li{
+.car{
+width: 300px; 
+float: left;
+margin: auto; 
 display: block;
-margin: auto;
-width: 100px;
-padding: 0px 0px;
+padding: 1px 0 0;
 color: #696969;
 font-size: 16px;
+list-style-type: none;
 text-shadow: 0 0 1px silver;
-	
 }
 
+a.link2
+{
+	
+ font-size: 16px;	
+ color: white;
+ background-color: #8a0600;
+ display: block;
+ width: 250px;
+ height: 30px;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;	
+}
+
+.car >  ul{
+ width: 500px;	
+ margin: auto;
+
+ padding: 10px 10px;
+ 
+	
+}
+.cars ul > li{
+display: block;
+margin: auto;
+width: 500px;
+
+	
+}
+*/
 
 

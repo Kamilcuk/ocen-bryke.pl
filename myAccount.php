@@ -8,35 +8,23 @@
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
 	</head>
-	<?php
-		if(isset($_SESSION["user"]))
-		{
-		   $user = $_SESSION["user"];
-		   $info=$user->getInfo();
-		   $string=implode(' ',$info); 
-		   $nick=$info["nick"];
-		   $email=$info["e-mail"];
-		   
-		   //$wiek=$info[""];
-		  
- 
-		}
-		?>
+	<?php /* Kamil */ $info=$user->getInfo(); ?>
 		<body class='frame'>
 		<h1>jestem myAccount.php</h1>
 		 <div class='Login'>
-			<form action="coś do zmiany.php" method="userData">
-			<label for="inp">Nazwa użytkownika:</label><input type="text" name = "newNick" placeholder= <?php echo $nick?>><br>
-			<label for="inp">e-mail:</label><input type="text" name = "newEmail" placeholder=<?php echo $email?>><br>
-			<label for="inp">wiek:</label><input type="text" name = "newAge" placeholder="18"><br>
-			<label for="inp">ranga ?:</label><br> 
+			<form action="tryEditAccount.php" method="post">
+			<label for="inp">Nazwa użytkownika:</label>
+				<input type="text" placeholder="<?php echo $info["nick"]?>" readonly><br>
+			<label for="inp">e-mail:</label>
+				<input type="e-mail" name="Uzytkownik_e_mail" placeholder="<?php echo $info["e-mail"]?>"><br>
+			<label for="inp">wiek:</label>
+				<input type="number" name="Uzytkownik_wiek" placeholder="<?php echo $info['wiek']?>"><br>
+			<label for="inp">Ranga:</label>
+				<input type="number" placeholder="<?php echo $info['ranga']?>" readonly><br>
+			<label for="inp">Admin:</label>
+				<input type="number" placeholder="<?php echo $info['admin']?>" readonly><br>
 			<input type="submit" value="Wprowadź zmiany">
-			<a class='link' target='content_iframe' 
-				href='addCar.php' onClick="resizeUpdate()">
-				Dodaj brykę
-			</a>
-		
+			</form>
 		 </div>
-		
 	</body>
 </html>

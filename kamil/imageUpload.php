@@ -10,7 +10,7 @@ require_once('szukaj.inc');
  * @param unknown $_FILE zmienna zwraca przez php -> $_FILES['twojStringWIpucieWHTMLu']
  * @return positive non-zero numeric on success, reszta on false
  */
-function upload_image($user=null, $ID_samochodu=null, $_FILE=null) {
+function upload_image($user=null, $ID_samochodu=null, $_FILE=null, $opis) {
 
 	// config
 	global $settings;
@@ -64,7 +64,11 @@ function upload_image($user=null, $ID_samochodu=null, $_FILE=null) {
 	// ALL OK, możemy w końcu coś zrobić
 	// dodajemy zdjęcie z tymczasowym położeniem do bazy danych przez usera
 	$tmpName = $_FILE["tmp_name"]; // aktualne tmp położenie naszego zdjęcia
-	$ret = $user->actionDodaj("Zdjecie", array("ID_samochodu" => $ID_samochodu, "URL" => $tmpName));
+	$ret = $user->actionDodaj("Zdjecie", array(
+			"ID_samochodu" => $ID_samochodu, 
+			"URL" => $tmpName,
+			"opis" => $opis,
+	));
 	if ( $ret == false ) {
 		echo __FILE__.__LINE__."Error w dodawaniu zdjęcia przy user->actionDodaj";
 		return false;

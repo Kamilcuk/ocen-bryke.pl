@@ -154,6 +154,8 @@ class user {
 		switch ($table) {
 			case "Samochod":
 			case "Komentarz":
+			case "Ocena_komentarza":
+			case "Ocena_samochodu":
 				// TODO sprawdzanie wartości
 				return db::insertInto($table, "ID_uzytkownika, ".$columns, $this->getId().", ".$values);
 			case "Marka":
@@ -229,6 +231,7 @@ class user {
 			return false;
 		}
 	}
+	/*
 	function actionEdytuj($table, $id, array $vals = array()) {
 		if ( !$this->zalogowany ) return false;
 		if ( sizeof($vals) == 0 || !is_string($table) || !is_numeric($id) ) {
@@ -301,6 +304,7 @@ class user {
 		}
 		return db::update($table, $set, $id);
 	}
+	*/
 	// -------------------- EOF Działania --------------------------
 	// ---------------- dodaj Gówno -- na razie korzystamy z actionDodaj() powyzej
 	/*

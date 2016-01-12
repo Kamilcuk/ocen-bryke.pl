@@ -11,16 +11,13 @@
 	<body class='frame'>
 		<h1>jestem myCars.php</h1>
 
-		<a class='link' target='content_iframe' href='addCar.php' onClick="resizeUpdate()">Dodaj samochód</a>
-		<a class='link' target='content_iframe' href='addMarka.php' onClick="resizeUpdate()">Dodaj markę samochodu</a>
-		<a class='link' target='content_iframe' href='addModel.php' onClick="resizeUpdate()">Dodaj model samochodu</a>
-		<a class='link' target='content_iframe' href='addSilnik.php' onClick="resizeUpdate()">Dodaj silnik samochodów</a>
-		<a class='link' target='content_iframe' href='addWersja.php' onClick="resizeUpdate()">Dodaj wersję samochodów</a>
+		<a class='link2' target='content_iframe' href='addCar.php' onClick="resizeUpdate()">Dodaj samochód</a>
+	
 <?php //Kamnil Cukrowski
 //sdb::setDebug(10);
 $cars = db::query('select * from Samochod where ID_uzytkownika = '.$user->getID());
 foreach($cars as $car) {
-	echo "<div class='Labels'><ul>";
+	echo "<div class='car'><ul>";
 	echo "<li>Wersja:".
 		db::queryone('select nazwa from Wersja where ID_wersji = '.$car['ID_wersji'])['nazwa'].'</li>';
 	echo "<li>Silnik:".
@@ -39,6 +36,15 @@ foreach($cars as $car) {
 		$car['rok_produkcji'].'</li>';
 	echo "</ul>";
 	
+	// zdjecia :D niech sie wyswietlaja!
+	$pics = db::query('select * from Zdjecie where ID_samochodu = '.$car['ID_samochodu']);
+	echo "<ul>";
+	foreach($pics as $pic) {
+		echo "<li>Zdjecie:".
+			'<img src="'.$pic['url'].'" title="'.$pic['opis'].'"></li>';
+	}
+	echo "</ul>";
+	
 	echo '<br>';
 	echo '<a href="addZdjecie.php?ID_smochodu='.$car['ID_samochodu'].'">';
 	echo 'Dodaj fotke do tego samochodu</a>';
@@ -51,7 +57,8 @@ foreach($cars as $car) {
 ?>
 <?php //Kamil Cukrowski nie wiem co to jest tu ponizej: 
 /*
-		<div class='Labels'>
+		
+<div class='Labels'>
 			<label for="inp">Marka:</label>
 			<label for="inp">Model:</label>
 			<label for="inp">Typ nadwozia:</label>
