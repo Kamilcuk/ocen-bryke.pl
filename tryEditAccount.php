@@ -19,12 +19,14 @@
 			if ( !isset($_POST["Uzytkownik_e_mail"]) ) {
 				fatal('Nie podano Uzytkownik_e_mail');
 			}
-			if ( !isset($_POST["Uzytkownik_wiek"]) ) {
-				fatal('Nie podano Uzytkownik_wiek');
+			if ( !isset($_POST['Uzytkownik_haslo'])) {
+				fatal('Nie wprowazdiles pierwszego hasla.');
+			}
+			if ( !$user->sprawdzHaslo($user->nick, $_POST['Uzytkownik_haslo']) ) {
+				fatal('Wprowadzone hasło jest nieprawidłowe.');
 			}
 			$ret = db::query("UPDATE Uzytkownik ".
-					" set wiek = '".db::escape($_POST["Uzytkownik_wiek"])."'".
-					" , `e-mail` = '".db::escape($_POST["Uzytkownik_e_mail"])."'".
+					" set `e-mail` = '".db::escape($_POST["Uzytkownik_e_mail"])."'".
 					" where ID_uzytkownika = '".$user->getID()."'");
 			if ( $ret ) {
 				echo "Udalo sie!";
@@ -32,7 +34,6 @@
 				echo "Nie udalo sie!";
 			}
 		?>
-
     </body>
 </html>
 

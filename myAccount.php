@@ -17,12 +17,10 @@
 				<input type="text" placeholder="<?php echo $info["nick"]?>" readonly><br>
 			<label for="inp">e-mail:</label>
 				<input type="e-mail" name="Uzytkownik_e_mail" placeholder="<?php echo $info["e-mail"]?>"><br>
-			<label for="inp">wiek:</label>
-				<input type="number" name="Uzytkownik_wiek" placeholder="<?php echo $info['wiek']?>"><br>
-			<label for="inp">Ranga:</label>
-				<input type="number" placeholder="<?php echo $info['ranga']?>" readonly><br>
 			<label for="inp">Admin:</label>
 				<input type="number" placeholder="<?php echo $info['admin']?>" readonly><br>
+			<label for="inp">Wprowadz hasło:</label>
+				<input type="text" name="Uzytkownik_haslo" ><br>
 			<input type="submit" value="Wprowadź zmiany">
 			</form>
 		 </div>

@@ -130,6 +130,13 @@ class user {
 	}
 	
 	// ------------------- Działania -------------------------
+	function czyAdmin() {
+		$ret = db::query('select Admin from Uzytkownik where ID_uzytkownika = '.$this->getId())[0]['Admin'];
+		if ( $ret == 0 ) {
+			return false;
+		}
+		return true;
+	}
 	function actionDodaj($table = null, array $vals = array()) {
 		if ( !$this->zalogowany ) return false;
 		if ( $table == null || sizeof($vals) == 0 ) { 
@@ -201,7 +208,8 @@ class user {
 			default:
 				return false;
 		}
-		if ( !$this->actionSprawdzCzyMoje($table, $id) ) {
+		// admin moze usuwac nie swoje rzeczy
+		if ( !$this->admin() && !$this->actionSprawdzCzyMoje($table, $id) ) {
 			echo __FILE__.__LINE__."To nie moja ".$table." o id ".$id."nie moge tego wykasować! <br>";
 			return false;
 		}

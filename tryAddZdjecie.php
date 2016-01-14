@@ -16,14 +16,14 @@
 				echo $str.'<br>';
 				exit -1;
 			}
-			if ( !isset($_POST["ID_samochodu"]) ) {
+			if ( !isset($_GET["ID_samochodu"]) ) {
 				fatal('Nie podano ID_samochodu do zdjecia');
 			}
 			if ( !isset($_POST["Zdjecie_opis"]) ) {
 				fatal('Nie podano Zdjecie_opis do zdjecia');
 			}
 			require_once('kamil/imageUpload.php');
-			$ret = upload_image($user, $_POST["ID_samochodu"], 
+			$ret = upload_image($user, $_GET["ID_samochodu"], 
 					$_FILES["uploadedFile"], $_POST['Zdjecie_opis']);
 			if ( !is_numeric($ret) ) {
 				fatal('Upload zdjecia nieudany!');

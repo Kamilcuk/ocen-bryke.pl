@@ -105,6 +105,31 @@ class db {
 		return db::query("UPDATE `".$table."` SET ".$set." WHERE `".db::getFirstColumnName($table)."` = '".$id."'");
 	}
 };
+
+/**
+ * Pomocnicza funkcja do pobierania oceny. Mały wrapper, który 
+ * przeciwdziała bugowi. Jak nie ma ani jednej oceny, to wyświetla ocenę '0'. :D
+ * @param unknown $tabelaParametr określa czego ocenę pobieramy - samochodu czy zdjęcia czy komentarza.
+ * Parametr czego jest nazwą tabeli.
+ * @param unknown $id Id tego, co ocenę pobieramy
+ */
+function getOcena($tabela=NULL, $id=NULL) {
+	if ( !is_numeric($id) ) {
+		echo __FILE__.":".__LINE__."id nie numeric<BR>";
+		return 'ERR';
+	}
+	switch($tabela) {
+		case 'Samochod':
+			$ret=db::query('select SUM(wartosc) as t from Ocena_samochodu where ID_samochodu = '.$id)[0]['t'];
+			break;
+		case 'Komentarz':
+			$ret=db::query('select SUM(wartosc) as t from Ocena_komentarza where ID_komentarza = '.$id)[0]['t'];
+			break;
+	}
+	return $ret == NULL ? '0' : $ret;
+	
+}
+
 register_shutdown_function('db::disconnect');
 db::connect();
 ?>

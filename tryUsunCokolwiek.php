@@ -27,11 +27,10 @@ $id = $_GET['id'];
 if( !is_numeric($id) ) {
 	fatal("ID_do_usuniecia to nie numer");
 }
-switch($_GET['tabela']) {
-	case 'Komentarz':
-		$ret = $user->actionUsun('Komentarz', $id);
-		break;
-}
+
+/// BOOM! 
+$ret = $user->actionUsun($_GET['tabela'], $id);
+
 if ( $ret ) {
 	echo "Udalo sie usunać.<br>";
 } else { 

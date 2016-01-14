@@ -412,6 +412,47 @@ box-shadow: 0 0 2px silver;
 list-style-type: none;
 }
 
+.tab{
+width: 700px; 
+margin: auto; 
+display: block;
+text-align: center;
+padding: 1px 0 0;
+color: #696969;
+font-size: 12px;
+text-shadow: 0 0 1px silver;
+
+}
+.img{
+padding:20px;
+text-align: center;
+margin: auto; 
+}
+
+.row{
+width: 700px; 	
+margin: auto; 
+text-align: center;
+}
+.row2{
+width: 550px; 	
+margin: auto;
+text-align: left;
+}
+.row3{
+width: 400px; 	
+margin: auto; 
+font-size:14;
+background-color: white;
+text-align: left;
+vertical-align: top; 
+}
+.row4{
+width: 150px; 	
+margin: auto; 
+text-align: left;
+vertical-align: top; 
+}
 
 .car{
 width: 300px; 
@@ -422,6 +463,51 @@ padding: 1px 0 0;
 color: #696969;
 font-size: 16px;
 list-style-type: none;
+text-shadow: 0 0 1px silver;
+}
+
+.car{
+width: 200px; 
+float: left;
+margin: auto; 
+display: block;
+padding: 1px 0 0;
+color: #696969;
+font-size: 16px;
+list-style-type: none;
+text-shadow: 0 0 1px silver;
+}
+
+a.err2{
+ font-size: 14px;	
+ color: white;
+ background-color: #8a0600;
+ display: block;
+ width: 120px;
+ height: 30px;
+ text-decoration: none;
+ text-align: center;
+ padding: 8px;	
+}
+
+a.ok2{
+ font-size: 14px;	
+ color: white;
+ background-color: green;
+ display: block;
+ width: 120px;
+ height: 30px;
+ text-decoration: none;
+ text-align: center;
+ padding: 8px;	
+}
+.label2  {
+display: block;
+width: 400px;
+padding: 3px 3px;
+color: white;
+font-size: 12px;
+background-color: #696969;
 text-shadow: 0 0 1px silver;
 }
 
@@ -450,9 +536,7 @@ a.link2
 .cars ul > li{
 display: block;
 margin: auto;
-width: 500px;
-
-	
+width: 500px;	
 }
 */
 

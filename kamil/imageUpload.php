@@ -10,7 +10,7 @@ require_once('szukaj.inc');
  * @param unknown $_FILE zmienna zwraca przez php -> $_FILES['twojStringWIpucieWHTMLu']
  * @return positive non-zero numeric on success, reszta on false
  */
-function upload_image($user=null, $ID_samochodu=null, $_FILE=null, $opis) {
+function upload_image($user=null, $ID_samochodu=null, $_FILE=null, $opis="") {
 
 	// config
 	global $settings;
@@ -23,15 +23,24 @@ function upload_image($user=null, $ID_samochodu=null, $_FILE=null, $opis) {
 		echo __FILE__.__LINE__." złe parametry <BR>";
 		return;
 	}
-	if ( !is_object($user) || !is_array($_FILE) || !is_numeric($ID_samochodu) ) {
+	if ( !is_object($user) ) {
 		echo __FILE__.__LINE__." złe parametry <BR>";
 		return;
 	}
+	if ( !is_array($_FILE) ) {
+		echo __FILE__.__LINE__." złe parametry <BR>";
+		return;
+		
+	}
+	if ( !is_numeric($ID_samochodu) ) {
+		echo __FILE__.__LINE__." złe parametry ID_samochodu=".$ID_samochodu." <BR>";
+		return;	
+	}
+	
 	if ( !$user->zalogowany || !is_string($user->nick) ) {
 		echo __FILE__.__LINE__.":user nie jest zalogowany<br>";
 		return;
 	}
-	
 	$imageFileType = pathinfo($_FILE["name"], PATHINFO_EXTENSION);
 	$imageSize = getimagesize($_FILE["tmp_name"]);
 	//$targetFile = tempnam($targetDir, $user->nick."_").".".$imageFileType;
