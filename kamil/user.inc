@@ -209,7 +209,7 @@ class user {
 				return false;
 		}
 		// admin moze usuwac nie swoje rzeczy
-		if ( !$this->admin() && !$this->actionSprawdzCzyMoje($table, $id) ) {
+		if ( !$this->czyAdmin() && !$this->actionSprawdzCzyMoje($table, $id) ) {
 			echo __FILE__.__LINE__."To nie moja ".$table." o id ".$id."nie moge tego wykasować! <br>";
 			return false;
 		}

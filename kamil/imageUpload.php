@@ -54,7 +54,7 @@ function upload_image($user=null, $ID_samochodu=null, $_FILE=null, $opis="") {
 		echo __FILE__.__LINE__."To nie jest fotka.<br>";
 		return;
 	}
-	if($imageFileType!="jpg" && $imageFileType!="png" && $imageFileType!="jpeg" && $imageFileType!="gif") {
+	if( !preg_match("/jpg|png|jpeg|gif/i", $imageFileType) ) {
 		echo __FILE__.__LINE__."Dozwolne typy plikow to jpg, png, jpe, gif.<br>";
 		return;
 	}

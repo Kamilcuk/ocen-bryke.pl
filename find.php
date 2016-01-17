@@ -24,10 +24,12 @@
 			</select></td></tr>
 		 <tr><td><label for="inp">Model:</label></td>
 			<td><select name="Model">
-				<option selected="selected">Wybierz</option>
-				<option>dupa</option>
-				<option>dupa</option>
-			<option>Inny</option>
+		<?php //Kamil Cukrowski
+			$rows = db::query('select nazwa from Model;');
+			foreach($rows as $row) {
+			echo "<option>".$row['nazwa']."</option>"."\n";
+		}
+		?>
 			</select></td></tr>
 		<tr><td><label for="inp">Typ nadwozia:</label></td>
 			<td><select name="Marka">

@@ -173,77 +173,7 @@ article
  clear: both;
 }
 
-
-#sidebarL
-{
- position: absolute;
- top: 108px;
- left: 5px;
- width: 170px;
- height: 800px;
-
- background-color: black; 
- display: block;
- margin-left: 2px; 
- padding: 3px;}
-
-#sidebarL h2{
- background-color: #1a0600;
- display: block;
- color: white;
- padding: 16px;
- margin-top: 0px;
- margin-bottom: 2px;}
-
-#sidebarL nav 
-{
- display: block;	
- width: auto;
- padding: 0px;}
-
-
-#sidebarL ul.navbar2{
- position: relative;
- margin: 0;
- padding: 0px;
- list-style-type: none;}
-
-
-#sidebarL li.navbar2{
- float: left;
- padding: 0px;
- margin-bottom: 2px;}
-
-#sidebarL a.navbar2_link
-{
- color: white;
- background-color: #1a0600;
- display: block;
- width: 150px;
- height: 30px;
- text-decoration: none;
- text-align: left;
- padding: 10px;}
-
-
-#sidebarL a.navbar2_link:hover
-{
- background-color: #65160A;
-}
-
-#sidebarR
-{
- position: absolute;
- top: 108px;
- right: 5px;
- width: 170px;
- height: 800px;
- border: 1px solid black;	
- background-color: black;
- display: block;
- margin-left: 2px; 
- padding: 3px;}
- 
+ /*
  .main{
  position: absolute;
  display: inline;
@@ -273,7 +203,7 @@ article
   #main h4{
 	 display: block;
 	 text-align: center;
- }
+ }*/
  
 comment{
 	position: relative;
@@ -293,40 +223,6 @@ h5{
 	 background-color: rgb(220,220,220);
  }
  
-ul.com_r {
-  width: auto;
-  list-style-type: none;
- 
-}
-
-li.com_r{
-  list-style-type: none;
-  position: relative;
-  top: 40px;  
-  display: box;	
-  float: left;
-  padding: 0px;
-  margin: 0px;
-  width: auto;
-  border: 1px solid black;
- 
- }
-.comment_text{
-	 display: box;
-	 text-align: left;
-	 width: 300px;
-	 padding: 0px;
-	 margin: 0px;
- }
-.newComment {/*źle*/
-        width:400px; 
-        margin:0 auto;
-        background-color:#fff;
-        border:2px solid #ccc;
-        border-radius:10px; 
-		padding:2px; 
-        margin-top:2px; 
-}
   
  .user{
 	 display: inline;
@@ -341,7 +237,7 @@ li.com_r{
 .Login {
 width: 400px; 
 margin: 0 auto; 
-padding: 15px 0 0;
+padding: 2px 0 0;
 border: 1px solid silver;
 font: 16px calibri;
 letter-spacing: -1px;
@@ -376,9 +272,9 @@ a.link:hover
 label  {
 display: block;
 width: 200px;
-padding: 50px 10px;
+padding: 20px 10px;
 color: #696969;
-font: 20px calibri;
+font: 18px calibri;
 text-shadow: 0 0 1px silver;
 }
 
@@ -401,7 +297,7 @@ text-shadow: 0 0 1px silver;
 .Labels {
 width: 500px; 
 float: left;
-margin: auto; 
+margin: 10px; 
 padding: 1px 0 0;
 border: 1px solid silver;
 font: 20px calibri;

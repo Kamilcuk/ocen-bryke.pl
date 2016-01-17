@@ -19,7 +19,7 @@
 <?php //Kamil Cukrowski
 $rows = db::query('select nazwa from Model;');
 foreach($rows as $row) {
-	echo "<option>".$row['nazwa']."</option>"."\n";
+	echo "<option value=\"".$row['ID_modelu']."\">".$row['nazwa']."</option>"."\n";
 }
 ?>
 			</select></td>
@@ -58,7 +58,15 @@ foreach($rows as $row) {
 ?>
 			</select></td>
 			<td><a class='link2' target='content_iframe' href='addSilnik.php' onClick="resizeUpdate()">Dodaj typ silnika</a></td></tr>
-
+		
+			<tr><td><label for="inp">Marka_nazwa:</label></td>
+			<td><select name="Marka_nazwa">
+<?php //Kamil Cukrowski
+$rows = db::query('select nazwa from Marka;');
+foreach($rows as $row) {
+	echo "<option>".$row['nazwa']."</option>"."\n";
+}
+?>
 			</select></td></tr>
 			
 			</table>

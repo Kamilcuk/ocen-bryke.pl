@@ -9,7 +9,7 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
     </hed>
     <body class='frame'>
-        <h1>jestem tryAddCar.php</h1>
+        <h1>jestem tryAddKomentarz.php</h1>
         
         <?php // Kamil Cukrowski
 
@@ -34,7 +34,10 @@ if ( $ret ) {
 } else {
 	echo 'Nie udalo sie!<br>';
 }
-// i tyle
+			echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
+	setTimeout(function() {
+		window.parent.location.href = window.parent.location.href;
+	}, 1000);</script>";
 		?>
     </body>
 </html>

@@ -28,12 +28,11 @@
 					echo "<div class= 'error'>Logowanie nie powiodlo sie.<br></div>";
 				}
 
-				echo "Za chwile nastapi przekierowanie...";
+				echo "Za chwile nastapi przekierowanie...";	
 				echo "<script type='text/javascript'>
-					setTimeout(function()
-					{
-						window.parent.location.reload()
-					}, 2000);</script>";
+						setTimeout(function(){
+							window.parent.location.href = window.parent.location.href;
+						}, 1000);</script>";
 			}
 		?>
 

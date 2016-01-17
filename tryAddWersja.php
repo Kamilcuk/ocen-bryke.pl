@@ -37,18 +37,11 @@ if ( $ret ) {
 } else {
 	echo 'Nie udalo sie!<br>';
 }
-// i tyle
-		?>
-
-		<?php
-
-				echo "Za chwile nastapi przekierowanie...";
-				echo "<script type='text/javascript'>
-					setTimeout(function()
-					{
-						window.parent.location.reload()
-					}, 2000);</script>";
 			
+			echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
+	setTimeout(function() {
+		window.parent.location.href = window.parent.location.href;
+	}, 500);</script>";
 		?>
 
     </body>

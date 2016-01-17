@@ -16,7 +16,7 @@
 				echo "<script type='text/javascript'>
 					setTimeout(function()
 					{
-						window.parent.location.reload()
+						window.parent.location.href = window.parent.location.href;
 					}, 2000);</script>";
 			
 		?>

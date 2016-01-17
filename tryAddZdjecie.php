@@ -29,6 +29,11 @@
 				fatal('Upload zdjecia nieudany!');
 			}
 			echo 'Upload zdjecia udany! <BR>';
+			
+			echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
+	setTimeout(function() {
+		window.parent.location.href = window.parent.location.href;
+	}, 500);</script>";
 		?>
 
     </body>
