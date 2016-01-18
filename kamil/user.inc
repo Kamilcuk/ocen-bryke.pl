@@ -206,6 +206,7 @@ class user {
 			case 'Zdjecie';
 				break;
 			default:
+				echo __FILE__.__LINE__." Nie znaleziono ".$table." do usuniecia. <BR>";
 				return false;
 		}
 		// admin moze usuwac nie swoje rzeczy

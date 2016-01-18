@@ -307,7 +307,11 @@ letter-spacing: -1px;
 box-shadow: 0 0 2px silver;
 list-style-type: none;
 }
-
+/*
+tr{
+	border: 1px solid silver;
+}
+*/
 .tab{
 width: 700px; 
 margin: auto; 
@@ -317,6 +321,7 @@ padding: 1px 0 0;
 color: #696969;
 font-size: 12px;
 text-shadow: 0 0 1px silver;
+border: 1px solid silver;
 
 }
 .img{
@@ -331,11 +336,13 @@ min-width: = 200px;
 width: 700px; 	
 margin: auto; 
 text-align: center;
+
 }
 .row2{
 width: 550px; 	
 margin: auto;
 text-align: left;
+
 }
 .row3{
 width: 400px; 	
@@ -343,7 +350,8 @@ margin: auto;
 font-size:14;
 background-color: white;
 text-align: left;
-vertical-align: top; 
+vertical-align: top;
+
 }
 .row4{
 width: 125px; 	
@@ -357,6 +365,7 @@ color: #696969;
 font-size: 14px;
 text-shadow: 0 0 1px silver;
 vertical-align: top; 
+
 }
 .row5{
 width: 360px;
@@ -365,6 +374,7 @@ display: block;
 margin: auto; 
 text-align: left;
 vertical-align: top; 
+
 }
 .car{
 width: 300px; 
@@ -420,7 +430,7 @@ a.ok2{
 
 a.ok2:hover
 {
- background-color: #FF3333;
+ background-color: #32CD32;
 }
 
 .label2  {

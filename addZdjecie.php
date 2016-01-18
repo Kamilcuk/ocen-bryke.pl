@@ -26,7 +26,7 @@ $cars = db::query('select * from Samochod where ID_samochodu = '.$_GET['ID_samoc
 
 foreach($cars as $car) {
 
-	echo '<table class="tab" border="1" style="border: 1px solid black">';
+	echo '<table class="tab">';
 	echo '<tr ><td class="row4">Wersja:'.'</td><td class="row4">'.
 		db::queryone('select nazwa from Wersja where ID_wersji = '.$car['ID_wersji'])['nazwa'].'</td>';
 	// zdjecia :D niech sie wyswietlaja!
@@ -34,7 +34,7 @@ foreach($cars as $car) {
 	
 	foreach($pics as $pic) {
 		echo '<td class="img" rowspan = "6">'.
-		    "Zdjecie:".
+		    "Zdjecie:<br>".
 			'<img src="'.$pic['url'].'" title="'.$pic['opis'].
 			'" style="max-width:350px;max-height:350px;" ><br><br>'."\n";
 		echo '<a class = "Link2" href="tryUsunCokolwiek.php?tabela=Zdjecie&id='.$pic['ID_zdjecia'].'">';

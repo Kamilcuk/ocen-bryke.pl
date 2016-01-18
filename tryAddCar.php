@@ -36,6 +36,7 @@ if(!isset($_POST['przebieg'])) {
 	fatal("nie podales przebieg");
 }
 
+/*
 // ID_model rozpoznajemy po nazwie modelu
 $ID_modelu=db::queryone("select * from Model where nazwa = '".
 		db::escape($_POST['Model_nazwa'])."';")['ID_modelu'];
@@ -57,16 +58,30 @@ $ret = $user->actionDodaj("Samochod", array(
 		"rok_produkcji" => $_POST['rok_produkcji'],
 		"przebieg" => $_POST['przebieg'],
 ));
+*/
+
+// dodajemy
+$ret = $user->actionDodaj("Samochod", array(
+		"ID_modelu" => $_POST['Model_nazwa'],
+		"ID_wersji" => $_POST['Wersja_nazwa'],
+		"ID_silnika" => $_POST['Silnik_symbol'],
+		"ID_marki" =>$_POST['Marka_nazwa'],
+		"rok_produkcji" => $_POST['rok_produkcji'],
+		"przebieg" => $_POST['przebieg'],
+));
+
 if ( $ret ) {
 	echo 'Udalo sie!<br>';
+	$timeout=2000;
 } else {
 	echo 'Nie udalo sie!<br>';
+	$timeout=20000;
 }
 
 echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
 	setTimeout(function() {
 		window.parent.location.href = window.parent.location.href;
-	}, 1000);</script>";
+	}, ".$timeout.");</script>";
 ?>
 
     </body>

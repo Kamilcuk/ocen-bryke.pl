@@ -15,24 +15,25 @@
 		<?php //Kamil
 $pics = db::query('select * from Zdjecie order by data_dodania desc');
 foreach($pics as $pic) {
-	echo '<table border="1" style="border: 1px solid black">';
+	echo '<table class="tab">';
 	
-	echo '<tr class="tab">';
+	echo '<tr>';
 	$uzytkownik = db::query('select * from Uzytkownik where ID_uzytkownika = '.$pic['ID_uzytkownika'])[0];
 	$samochod = db::query('select * from Samochod where ID_samochodu = '.$pic['ID_samochodu'])[0];
-	echo '<td class="row" colspan="3" >Zdjecie nalezy do uzytkownika o nicku: '.$uzytkownik['nick'].
-    	'<br>Zostalo dodane dnia: '.$pic['data_dodania'].'<br>'.
-    	'Ocena samochodu to: '.getOcena('Samochod',$pic['ID_samochodu']).
-    	'</td></tr>';
-	echo '<tr class="tab"><td class="row" colspan="3">Zdjecie nalezy do samochodu marki: '.
+	echo '<td class="row" colspan="3" >Zdjecie nalezy do uzytkownika o nicku: <b>'.$uzytkownik['nick'].
+    	'</b><br>Zostalo dodane dnia: '.$pic['data_dodania'].'<br>'.
+    	'Ocena samochodu to: <b>'.getOcena('Samochod',$pic['ID_samochodu']).
+    	'</b></td></tr>';
+		
+	echo '<tr><td class="row" colspan="3">Zdjecie nalezy do samochodu marki: <b>'.
     	db::query('select * from Marka where ID_marki = '.$samochod['ID_marki'])[0]['nazwa'].
-    	'</td>';
+    	'</b></td>';
     echo '</tr>';
-	echo '<class="tab"><td class="img"colspan="3"> <img src="'.$pic['url'].'" title="'.$pic['opis'].'" style="max-width:300px;max-height:300px;">'.
+	echo '<td class="img"colspan="3"> <img src="'.$pic['url'].'" title="'.$pic['opis'].'" style="max-width:300px;max-height:300px;">'.
 		'</td></tr>';
 		
     
-    echo '<tr class="tab">';
+    echo '<tr>';
     if ( $user != NULL ) {
     	echo '<td class="row2" colspan="2">'.'Dodaj komentarz do samochodu: '.
 	    	'<form action="/tryAddKomentarz.php?ID_zdjecia='.$pic['ID_zdjecia'].'" method="post">'.
@@ -45,11 +46,11 @@ foreach($pics as $pic) {
     	if ( !$user->actionSprawdzCzyMoje('Samochod',$samochod['ID_samochodu']) ) {
     		// to moge go ocenic! :D
     		
-    		echo '<td >';
+    		echo '<td>';
     		$tmp = db::query("select * from Ocena_samochodu where ID_uzytkownika = ".$user->getID().
     				' AND ID_samochodu = '.$samochod['ID_samochodu']);
     		if ( count($tmp) != 0 ) {
-		    	echo 'Twoja ocena tego samochodu to: '.$tmp[0]['wartosc'].'<br>';
+		    	echo 'Twoja ocena tego samochodu to: <b>'.$tmp[0]['wartosc'].'</b><br>';
     		}
     		echo '<a class = "ok2" href="tryOcenKomentarz.php?ocena=1&tabela=Samochod&id='.$samochod['ID_samochodu'].
 	    		'">Ocen pozytywnie samochod</a>';
@@ -63,7 +64,7 @@ foreach($pics as $pic) {
     $komentarze = db::query('select * from Komentarz where ID_zdjecia = '.$pic['ID_zdjecia']
     		.' order by data_dodania desc');
     foreach($komentarze as $kom) {
-    	echo '<tr class="tab">';
+    	echo '<tr>';
     	echo '<td>Komentarz uzytkownika: <br>'.
 	    	db::query('select * from Uzytkownik where ID_uzytkownika = '.$kom['ID_uzytkownika'])[0]['nick'].
 	    	'<br> dodany w dniu:<br>

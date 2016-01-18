@@ -12,6 +12,7 @@
         <h1>jestem tryUsunCokolwiek.php</h1>
         
         <?php // Kamil Cukrowski
+
 $ret = false;
 function fatal($str) {
 	echo $str.'</br>';
@@ -36,17 +37,12 @@ if ( $ret ) {
 } else { 
 	echo "Nie udalo sie usunać.<br>";
 }
-// i tyle
-		?>
 
-		<?php
-
-				/*echo "Za chwile nastapi przekierowanie...";
+				echo "Za chwile nastapi przekierowanie...";	
 				echo "<script type='text/javascript'>
-					setTimeout(function()
-					{
-						window.parent.location.href = window.parent.location.href;
-					}, 2000);</script>";*/
+						setTimeout(function(){
+							window.parent.location.href = window.parent.location.href;
+						}, 1000);</script>";
 			
 		?>
 

@@ -59,7 +59,7 @@ foreach($cars as $car) { // petla po samochodach
 	
 	// ----------- cale wyswietlanie ponizej ------------
 	
-	echo '<table class="tab" border="1" style="border: 1px solid black">'."\n";
+	echo '<table class="tab">'."\n";
 	echo '<tr ><td class="row4">Wersja:'.'</td><td class="row4">'."\n".
 		db::queryone('select nazwa from Wersja where ID_wersji = '.$car['ID_wersji'])['nazwa'].'</td>';
 	
@@ -105,7 +105,7 @@ foreach($cars as $car) { // petla po samochodach
 	}	
 	echo '<tr><td colspan="2"><a class = "Link2" href="addZdjecie.php?ID_samochodu='.$car['ID_samochodu'].'">';
 	echo 'Dodaj fotke do tego samochodu</a></td>'."\n";
-	echo '<td><a class = "err3" href="tryUsunCokolwiek.php?tabela=samochod&id='.$car['ID_samochodu'].'">';
+	echo '<td><a class = "err3" href="tryUsunCokolwiek.php?tabela=Samochod&id='.$car['ID_samochodu'].'">';
 	echo 'Usun ten samochód</a></td>'."\n";
 	
 	echo "</table>";

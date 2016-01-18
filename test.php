@@ -7,39 +7,73 @@
 	<head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
+        <SPAN id='debug'></SPAN>
 
 <script type='text/javascript'>
 function onclickMarka() {
 	var Marka_nazwa = document.getElementsByName("Marka_nazwa")[0];
 	var Model_nazwa = document.getElementsByName("Model_nazwa")[0];
-    if ( typeof Model_nazwa_innerHTML_orig == 'undefined' ) {
-		Model_nazwa_innerHTML_orig = Model_nazwa.innerHTML;
-    }
+	var Wersja_nazwa = document.getElementsByName("Wersja_nazwa")[0];
+	var Silnik_symbol = document.getElementsByName("Silnik_symbol")[0];
 	var ID_marki = Marka_nazwa.options[Marka_nazwa.selectedIndex].value;
-	Model_nazwa.innerHTML = Model_nazwa_innerHTML_orig;
+
+    // reset other
+    Model_nazwa.selectedIndex = 0;
+    Wersja_nazwa.selectedIndex = 0;
+    Silnik_symbol.selectedIndex = 0;
+	
+    if ( Marka_nazwa.selectedIndex == 0 ) {
+		return;
+    }
+	
 	for(var i=Model_nazwa.options.length-1;i>-1;--i) {
 		var option_Model = Model_nazwa.options[i];
-		if ( option_Model.id !=  ID_marki ) {
-			Model_nazwa.remove(i);
-		}
+		option_Model.disabled = option_Model.id !=  ID_marki;
 	}
 }
 function onclickModel() {
 	var Marka_nazwa = document.getElementsByName("Marka_nazwa")[0];
 	var Model_nazwa = document.getElementsByName("Model_nazwa")[0];
-	var Model_nazwa = document.getElementsByName("Model_nazwa")[0];
-    if ( typeof Model_nazwa_innerHTML_orig == 'undefined' ) {
-		Model_nazwa_innerHTML_orig = Model_nazwa.innerHTML;
-    }
-	var ID_marki = Marka_nazwa.options[Marka_nazwa.selectedIndex].value;
-	Model_nazwa.innerHTML = Model_nazwa_innerHTML_orig;
-	for(var i=Model_nazwa.options.length-1;i>-1;--i) {
-		var option_Model = Model_nazwa.options[i];
-		if ( option_Model.id !=  ID_marki ) {
-			Model_nazwa.remove(i);
-		}
+	var Wersja_nazwa = document.getElementsByName("Wersja_nazwa")[0];
+	var Silnik_symbol = document.getElementsByName("Silnik_symbol")[0];
+	var ID_modelu  = Model_nazwa.options[Model_nazwa.selectedIndex].value;
+
+    // reset other
+    Wersja_nazwa.selectedIndex = 0;
+    Silnik_symbol.selectedIndex = 0;
+    
+    if ( Model_nazwa.selectedIndex == 0 ) {
+		return;
+    }    
+    
+	for(var i=Wersja_nazwa.options.length-1;i>-1;--i) {
+		var option_Wersja_nazwa = Wersja_nazwa.options[i];
+		option_Wersja_nazwa.disabled = option_Wersja_nazwa.id != ID_modelu;
 	}
+	
+	// znajdz ID_silnika na podstawie ID_modelu
+	for(var i=silniki.length-1;i>-1;--i) {
+		if ( silniki[i].ID_modelu == ID_modelu )
+			break;
+	}
+	if ( i == -1 ) {
+		document.getElementById("debug").innerHTML = 
+			'Blad w bazie danych! ID_modelu:'+ID_modelu+' i:'+i+"<BR>";
+		return;
+	}
+	var ID_silnika = silniki[i].ID_silnika;
+	for(var i=Silnik_symbol.options.length-1;i>-1;--i) {
+		var option_Silnik_symbol = Silnik_symbol.options[i];
+		option_Silnik_symbol.disabled = option_Silnik_symbol.value != ID_silnika;
+	}
+	
 }
+
+<?php //Kamil
+$rows = db::query('select ID_modelu, ID_silnika from Model;');
+echo "var silniki = ".json_encode($rows)."; \n";
+?>
+
 </script>
 
 	</head>
@@ -76,7 +110,7 @@ foreach($rows as $row) {
 			
 			<td><a class='link2' target='content_iframe' href='addModel.php' onClick="resizeUpdate()">Dodaj model samochodu</a></td></tr>
 						
-			<tr><td><label onclick="onclickWersja()" for="inp">Wersja:</label></td>
+			<tr><td><label for="inp">Wersja:</label></td>
 			<td><select name="Wersja_nazwa">
 			<option disabled selected> -- select an option -- </option>
 <?php //Kamil Cukrowski
@@ -88,24 +122,22 @@ foreach($rows as $row) {
 			</select></td>
 			<td><a class='link2' target='content_iframe' href='addWersja.php' onClick="resizeUpdate()">Dodaj wersję samochodu</a></td></tr></tr>
 						
-			<tr><td><label for="inp">Symbol silnika:</label></td>		
+			<tr><td><label for="inp">Symbol silnika tego modelu:</label></td>		
 			<td><select name="Silnik_symbol">
 			<option disabled selected> -- select an option -- </option>
 <?php //Kamil Cukrowski
-$rows = db::query('select symbol from Silnik;');
+$rows = db::query('select * from Silnik;');
 foreach($rows as $row) {
-	echo "<option>".$row['symbol']."</option>"."\n";
+	echo "<option value='".$row['ID_silnika']."' >".$row['symbol']."</option>"."\n";
 }
 ?>
 			</select></td>
 			<td><a class='link2' target='content_iframe' href='addSilnik.php' onClick="resizeUpdate()">Dodaj typ silnika</a></td></tr>
 
-			</select></td></tr>
-			
-			</table>
+			</select></td></tr></table>
 		
-			<label for="inp">Rok produkcji:</label>   <input type="number" name="rok_produkcji"><br>
-			<label for="inp">przebieg:</label>   <input type="number" name="przebieg"><br>
+			<label for="inp">Rok produkcji:</label> <input type="number" name="rok_produkcji" placeholder=1999 ><br>
+			<label for="inp">przebieg:</label><input type="number" name="przebieg" placeholder=10000 ><br>
 
 			<input type="submit">
 		</form>
