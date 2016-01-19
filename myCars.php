@@ -11,9 +11,11 @@
 	<body class='frame'>
 		<h1>jestem myCars.php</h1>
 
+<?php if ( !isset($_GET['ID_uzytkownika']) && !isset($_GET['ID_samochodu']) ) { ?>
 		<a class='link2' target='content_iframe' href='addCar.php' onClick="resizeUpdate()">
 			Dodaj nowy samochód</a>
 		<br>
+<?php } ?>
 
 <script  type='text/javascript'>
 var ba = [];
@@ -36,16 +38,27 @@ function incSuper(ID_samochodu) {
 	document.getElementById('image'+b.ID_samochodu).src = pic.url;
 	document.getElementById('image'+b.ID_samochodu).title = pic.opis;
 	document.getElementById('ZdjecieIndicator'+b.ID_samochodu).innerHTML = b.index+1;
-	document.getElementById('usunToZdjecie'+b.ID_samochodu).href = 
-		'tryUsunCokolwiek.php?tabela=Zdjecie&id='+pic.ID_zdjecia.toString();
+	var usun = document.getElementById('usunToZdjecie'+b.ID_samochodu);
+	if ( typeof usun != undefined && usun != null ) {
+		usun.href = 'tryUsunCokolwiek.php?tabela=Zdjecie&id='+pic.ID_zdjecia.toString();
+	}
 		
 	++b.index;
 }
 </script>
 
 <?php //Kamnil Cukrowski
-//sdb::setDebug(10);
-$cars = db::query('select * from Samochod where ID_uzytkownika = '.$user->getID());
+//db::setDebug(10);
+if ( isset($_GET['ID_uzytkownika']) ) {
+	// wyświetlamy wszystki samochodu tego użytkownika
+	$cars = db::query('select * from Samochod where ID_uzytkownika = "'.db::escape($_GET['ID_uzytkownika']).'";');
+} elseif ( isset($_GET['ID_samochodu']) ) {
+	// wyswietlamy tylko ten samochod
+	$cars = db::query('select * from Samochod where ID_samochodu = "'.db::escape($_GET['ID_samochodu']).'";');
+} else {
+	// wyswietlamy samochodu zalogowanego uzytkownika
+	$cars = db::query('select * from Samochod where ID_uzytkownika = '.$user->getID());
+}
 foreach($cars as $car) { // petla po samochodach
 	
 	// pobierz zdjecia z bazy danych
@@ -98,15 +111,19 @@ foreach($cars as $car) { // petla po samochodach
 		$car['rok_produkcji'].'</td>'."\n";
 	echo '<tr><td class="row4">Ocena samochodu:'.'</td><td class="row4">'.
 			getOcena('Samochod',$car['ID_samochodu']).'</td>'."\n";
-	if ( count($pics) > 0 ) {
-		echo '<td><a id="usunToZdjecie'.$car['ID_samochodu'].'" class="err3" '.
-			'href="tryUsunCokolwiek.php?tabela=Zdjecie&id='.$pic['ID_zdjecia'].'">';
-		echo 'Usun to Zdjecie</a></tr>'."\n";
-	}	
-	echo '<tr><td colspan="2"><a class = "Link2" href="addZdjecie.php?ID_samochodu='.$car['ID_samochodu'].'">';
-	echo 'Dodaj fotke do tego samochodu</a></td>'."\n";
-	echo '<td><a class = "err3" href="tryUsunCokolwiek.php?tabela=Samochod&id='.$car['ID_samochodu'].'">';
-	echo 'Usun ten samochód</a></td>'."\n";
+	
+	//if ( $user->sprawdzCzyMoje('Samochod',$car['ID_samochodu'])) {
+	if ( !isset($_GET['ID_uzytkownika']) && !isset($_GET['ID_samochodu']) ) {
+		if ( count($pics) > 0 ) {
+			echo '<td><a id="usunToZdjecie'.$car['ID_samochodu'].'" class="err3" '.
+				'href="tryUsunCokolwiek.php?tabela=Zdjecie&id='.$pic['ID_zdjecia'].'">';
+			echo 'Usun to Zdjecie</a></tr>'."\n";
+		}	
+		echo '<tr><td colspan="2"><a class = "Link2" href="addZdjecie.php?ID_samochodu='.$car['ID_samochodu'].'">';
+		echo 'Dodaj fotke do tego samochodu</a></td>'."\n";
+		echo '<td><a class = "err3" href="tryUsunCokolwiek.php?tabela=Samochod&id='.$car['ID_samochodu'].'">';
+		echo 'Usun ten samochód</a></td>'."\n";
+	}
 	
 	echo "</table>";
 	

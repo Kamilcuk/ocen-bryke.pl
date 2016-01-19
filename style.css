@@ -10,7 +10,7 @@ line-height: 1.5;
 body.frame
 {
 background-color: rgba(0, 0, 0, 0);
-height: auto;
+height: 2000px;
 }
 
 
@@ -156,11 +156,11 @@ iframe
 {
 	
  width: 800px;
+ 
+ min-height: 500px;
 	
  border-width: 0px;
 }
-
-
 
 
 article
@@ -171,39 +171,9 @@ article
  margin: 0px auto;
 	
  clear: both;
+
 }
 
- /*
- .main{
- position: absolute;
- display: inline;
- top: 200px;
- left: 200px;
- padding: 10px;
- width: 934px;
- height: 700px;
- text-align: center;
- background-color: rgb(210,210,210);
- }
- 
- #main h3{
-	 position: relative;
-	 display: block;
-	 text-align: center;
-	 background-color: white;
- }
- 
- #main picture {
-  display: inline;
-  width: 800px;
-  height: 300px;
-  margin-bottom: 100px;
- }
- 
-  #main h4{
-	 display: block;
-	 text-align: center;
- }*/
  
 comment{
 	position: relative;
@@ -307,11 +277,8 @@ letter-spacing: -1px;
 box-shadow: 0 0 2px silver;
 list-style-type: none;
 }
-/*
-tr{
-	border: 1px solid silver;
-}
-*/
+
+
 .tab{
 width: 700px; 
 margin: auto; 
@@ -483,11 +450,12 @@ a.err3:hover
  
 	
 }
-.cars ul > li{
+.cars {
 display: block;
 margin: auto;
-width: 500px;	
+width: auto;
+height: 800px;
 }
-*/
+
 
 

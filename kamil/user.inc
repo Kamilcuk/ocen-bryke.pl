@@ -240,6 +240,9 @@ class user {
 			return false;
 		}
 	}
+	function sprawdzCzyMoje($table,$id) {
+		return $this->actionSprawdzCzyMoje($table,$id);
+	}
 	/*
 	function actionEdytuj($table, $id, array $vals = array()) {
 		if ( !$this->zalogowany ) return false;
