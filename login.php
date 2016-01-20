@@ -5,7 +5,7 @@
 	<head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-	</hed>
+	</head>
 	<body class='frame'>
         <h1>jestem login.php</h1>
     <div class='Login'>		
@@ -14,8 +14,9 @@
 		<input type="text" name="name"><br>
 		<label for="inp">Hasło:</label>
 		<input type="password" name="pass"><br><br>
-		<input type="submit"><br><br>
+		<input type="submit" value='Zaloguj'><br><br>
 		</form>
+	</div>
 	<a class='link' target='content_iframe' 
 		href='register.php' onClick="resizeUpdate()">
 		Zarejestruj

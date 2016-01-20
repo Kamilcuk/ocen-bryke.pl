@@ -14,7 +14,7 @@ if ( !isset($_POST['rodzaj']) ) {
 	echo '$_POST[rodzaj]<BR>';
 	exit(0);
 }
-db::setDebug(10);
+//db::setDebug(10);
 switch($_POST['rodzaj']) {
 	case 'Uzytkownik':
 		$rows=db::query("select * from Uzytkownik where nick like '%".db::escape($_POST['nick'])."%';");
@@ -53,8 +53,7 @@ switch($_POST['rodzaj']) {
 		if ( $str != null ) {
 			$str = ' WHERE '.$str;
 		}
-		echo $str."<BR>";
-		
+		//echo $str."<BR>";
 		$rows=db::query('SELECT * FROM Samochod '.$str.' ORDER BY ID_uzytkownika;');
 		foreach($rows as $row) {
 			//print_r($row); echo "<BR>";
