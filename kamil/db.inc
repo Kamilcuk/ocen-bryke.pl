@@ -104,6 +104,16 @@ class db {
 		if ( !is_numeric($id) ) return false;
 		return db::query("UPDATE `".$table."` SET ".$set." WHERE `".db::getFirstColumnName($table)."` = '".$id."'");
 	}
+	static function getEnumValues( $table, $field )
+	{
+		db::setDebug(10);
+		$table = db::escape($table);
+		$field = db::escape($field);
+	    $type = db::query( "SHOW COLUMNS FROM {$table} WHERE Field = '{$field}'" )[0]['Type'];
+	    preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
+	    $enum = explode("','", $matches[1]);
+	    return $enum;
+	}
 };
 
 /**

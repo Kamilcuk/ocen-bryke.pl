@@ -5,7 +5,7 @@ $settings = array (
 		'host' => '127.0.0.1',
 		'user' => 'projekt',
 		'pass' => 'projekt123',
-		'database' => 'projekt',
+		'database' => 'projekt2',
 		
 		// konfiguracja
 		'imageUploadDir' => '/srv/http/uploads/images/', // musi kończyć się slashem!!

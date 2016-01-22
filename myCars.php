@@ -3,7 +3,7 @@
     session_start();
 ?>
 <html>
-	<?php require_once('verify.inc'); ?>
+	<?php require_once('verify_try.inc'); ?>
 	<head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
@@ -60,9 +60,12 @@ if ( isset($_GET['ID_uzytkownika']) ) {
 	$cars = db::query('select * from Samochod where ID_uzytkownika = '.$user->getID());
 }
 foreach($cars as $car) { // petla po samochodach
-	
-	// pobierz zdjecia z bazy danych
 	$pics = db::query('select * from Zdjecie where ID_samochodu = '.$car['ID_samochodu']);
+	$uzytkownik = db::query('select * from Uzytkownik where ID_uzytkownika = '.$car['ID_uzytkownika'])[0];
+	$wersja = db::query('select * from Wersja where ID_wersji = '.$car['ID_wersji'])[0];
+	$model = db::query('select * from Model where ID_modelu = '.$wersja['ID_modelu'])[0];
+	$marka = db::query('select * from Marka where ID_marki = '.$model['ID_marki'])[0];
+	$silnik = db::query('select * from Silnik where ID_silnika = '.$car['ID_silnika'])[0];
 
 	// dodajemy do tablicy bc wszsystkie informacje do javascriptu
 	echo "<script  type='text/javascript'> \n".
@@ -96,14 +99,11 @@ foreach($cars as $car) { // petla po samochodach
 	 
 
 
-	echo '<tr><td class="row4">Silnik:'.'</td><td class="row4">'.
-		db::queryone('select symbol from Silnik where ID_silnika = '.$car['ID_silnika'])['symbol'].'</td>';
+	echo '<tr><td class="row4">Silnik:'.'</td><td class="row4">'.$silnik['symbol'].'</td>';
 	echo '</tr>'."\n";
-	echo '<tr><td class="row4">Model:'.'</td><td class="row4">'.
-		db::queryone('select nazwa from Model where ID_modelu = '.$car['ID_modelu'])['nazwa'].'</td>';
+	echo '<tr><td class="row4">Model:'.'</td><td class="row4">'.$model['nazwa'].'</td>';
 	echo '</tr>'."\n";
-	echo '<tr><td class="row4">Marka:'.'</td><td class="row4">'.
-		db::queryone('select nazwa from Marka where ID_marki = '.$car['ID_marki'])['nazwa'].'</td>';
+	echo '<tr><td class="row4">Marka:'.'</td><td class="row4">'.$marka['nazwa'].'</td>';
 	echo '</tr>'."\n";
 	echo '<tr><td class="row4">Przebieg:'.'</td> <td class="row4">'.
 		$car['przebieg'].'</td>'."\n";

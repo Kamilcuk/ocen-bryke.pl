@@ -3,7 +3,7 @@
     session_start();
 ?>
 <html>
-	<?php require_once('verify_easy.inc'); ?>
+	<?php require_once('verify_try.inc'); ?>
 	<head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
@@ -15,19 +15,25 @@
 		<?php //Kamil
 $pics = db::query('select * from Zdjecie order by data_dodania desc');
 foreach($pics as $pic) {
+	$uzytkownik = db::query('select * from Uzytkownik where ID_uzytkownika = '.$pic['ID_uzytkownika'])[0];
+	$samochod = db::query('select * from Samochod where ID_samochodu = '.$pic['ID_samochodu'])[0];
+	$wersja = db::query('select * from Wersja where ID_wersji = '.$samochod['ID_wersji'])[0];
+	$model = db::query('select * from Model where ID_modelu = '.$wersja['ID_modelu'])[0];
+	$marka = db::query('select * from Marka where ID_marki = '.$model['ID_marki'])[0];
+	$silnik = db::query('select * from Silnik where ID_silnika = '.$samochod['ID_silnika'])[0];
+	
+	
 	echo '<table class="tab">';
 	
 	echo '<tr>';
-	$uzytkownik = db::query('select * from Uzytkownik where ID_uzytkownika = '.$pic['ID_uzytkownika'])[0];
-	$samochod = db::query('select * from Samochod where ID_samochodu = '.$pic['ID_samochodu'])[0];
-	echo '<td class="row" colspan="3" >Zdjecie nalezy do uzytkownika o nicku: <b>'.$uzytkownik['nick'].
+	echo '<td class="row" colspan="3" >Zdjecie nalezy do uzytkownika o nicku: <b>'.
+			"<a href='myAccount.php?ID_uzytkownika={$uzytkownik['ID_uzytkownika']}'>{$uzytkownik['nick']}</a>".
     	'</b><br>Zostalo dodane dnia: '.$pic['data_dodania'].'<br>'.
     	'Ocena samochodu to: <b>'.getOcena('Samochod',$pic['ID_samochodu']).
     	'</b></td></tr>';
 		
-	echo '<tr><td class="row" colspan="3">Zdjecie nalezy do samochodu marki: <b>'.
-    	db::query('select * from Marka where ID_marki = '.$samochod['ID_marki'])[0]['nazwa'].
-    	'</b></td>';
+	echo '<tr><td class="row" colspan="3">Zdjecie nalezy do samochodu marki: '.
+			'<b>'.$marka['nazwa'].'</b></td>';
     echo '</tr>';
 	echo '<td class="img"colspan="3"> <img src="'.$pic['url'].'" title="'.$pic['opis'].'" style="max-width:300px;max-height:300px;">'.
 		'</td></tr>';

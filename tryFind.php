@@ -11,7 +11,7 @@
         <h1>jestem tryFind.php</h1>
 <?php
 if ( !isset($_POST['rodzaj']) ) {
-	echo '$_POST[rodzaj]<BR>';
+	echo "_POST[rodzaj] = '{$_POST['rodzaj']}' <BR>";
 	exit(0);
 }
 //db::setDebug(10);
@@ -30,31 +30,48 @@ switch($_POST['rodzaj']) {
 		break;
 	case 'Samochod':
 		$str=null;
-		if ( $_POST['ID_marki'] != -1 ) {
+		$innerjoin=null;
+		$innerjoin .= ' inner join Wersja on Wersja.ID_wersji = Samochod.ID_wersji
+				inner join Model on Model.ID_modelu = Wersja.ID_modelu
+				inner join Marka on Marka.ID_marki = Model.ID_marki 
+				inner join Silnik on Silnik.ID_silnika = Samochod.ID_silnika ';
+		if ( $_POST['ID_uzytkownika'] != -1 ) {
 			if ( $str != null ) { $str .= 'AND'; }
-			$str .= " ID_marki = '".$_POST['ID_marki']."' ";
+			$str .= " Samochod.ID_uzytkownika = '".db::escape($_POST['ID_uzytkownika'])."' ";
+		}
+		if ( $_POST['Marka_nazwa'] != -1 ) {
+			if ( $str != null ) { $str .= 'AND'; }
+			$str .= " Marka.nazwa = '".db::escape($_POST['Marka_nazwa'])."' ";
 		}
 		if ( $_POST['ID_modelu'] != -1 ) {
 			if ( $str != null ) { $str .= 'AND'; }
-			$str .= " ID_modelu = '".$_POST['ID_modelu']."' ";
+			$str .= " Samochod.ID_modelu = '".db::escape($_POST['ID_modelu'])."' ";
 		}
-		if ( $_POST['ID_wersji'] != -1 ) {
+		if ( $_POST['Wersja_nazwa'] != -1 ) {
 			if ( $str != null ) { $str .= 'AND'; }
-			$str .= " ID_wersji = '".$_POST['ID_wersji']."' ";
+			$str .= " Wersja.nazwa = '".db::escape($_POST['Wersja_nazwa'])."' ";
 		}
-		if ( $_POST['ID_silnika'] != -1 ) {
+		if ( $_POST['Silnik_symbol'] != -1 ) {
 			if ( $str != null ) { $str .= 'AND'; }
-			$str .= " ID_silnika = '".$_POST['ID_silnika']."' ";
+			$str .= " Silnik.symbol = '".db::escape($_POST['Silnik_symbol'])."' ";
 		}
-		if ( $_POST['ID_uzytkownika'] != -1 ) {
+		if ( $_POST['Silnik_pojemnosc'] != -1 ) {
 			if ( $str != null ) { $str .= 'AND'; }
-			$str .= " ID_uzytkownika = '".$_POST['ID_uzytkownika']."' ";
+			$str .= " Silnik.pojemnosc = '".db::escape($_POST['Silnik_pojemnosc'])."' ";
+		}
+		if ( $_POST['Silnik_zasilanie'] != -1 ) {
+			if ( $str != null ) { $str .= 'AND'; }
+			$str .= " Silnik.zasilanie = '".db::escape($_POST['Silnik_zasilanie'])."' ";
+		}
+		if ( $_POST['Silnik_moc'] != -1 ) {
+			if ( $str != null ) { $str .= 'AND'; }
+			$str .= " Silnik.moc = '".db::escape($_POST['Silnik_moc'])."' ";
 		}
 		if ( $str != null ) {
 			$str = ' WHERE '.$str;
 		}
 		//echo $str."<BR>";
-		$rows=db::query('SELECT * FROM Samochod '.$str.' ORDER BY ID_uzytkownika;');
+		$rows=db::query('SELECT ID_samochodu FROM Samochod '.$innerjoin.' '.$str.' ORDER BY ID_uzytkownika;');
 		foreach($rows as $row) {
 			//print_r($row); echo "<BR>";
 			echo "<article>

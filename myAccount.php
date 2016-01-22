@@ -3,7 +3,7 @@
     session_start();
 ?>
 <html>
-	<?php require_once('verify.inc'); ?>
+	<?php require_once('verify_try.inc'); ?>
 	<head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
@@ -26,7 +26,7 @@
 		}
 		
 		// edit jest prawda jesli jestesmy wlascicielem danych
-		$edit = ( $user->getId() == $info['ID_uzytkownika'] );
+		$edit = ( isset($user) && $user->getId() == $info['ID_uzytkownika'] );
 	?>
 	
 			<form action="tryEditAccount.php" method="post">
