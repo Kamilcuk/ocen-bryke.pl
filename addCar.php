@@ -70,7 +70,7 @@ function onclickModel() {
 }
 
 <?php //Kamil
-$rows = db::query('select ID_modelu, ID_silnika from Model;');
+$rows = db::query('select Model.ID_modelu, Samochod.ID_silnika from Samochod inner join Silnik on Samochod.ID_silnika = Silnik.ID_silnika inner join Wersja on Wersja.ID_wersji = Samochod.ID_wersji inner join Model on Wersja.ID_modelu = Model.ID_modelu;');
 echo "var silniki = ".json_encode($rows)."; \n";
 ?>
 
