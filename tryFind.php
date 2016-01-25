@@ -6,6 +6,22 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
+                <script type='text/javascript'>
+                function resizeUpdate(index)
+                {
+                       parent_iframe = parent.document.getElementById('content_iframe');
+                       parent_doc = parent_iframe.contentDocument || parent_iframe.contentWindow.document;
+                       iframe = parent_doc.getElementById('content_iframe_' + index);
+
+                       iframe.style.height = '0px';
+                       contentHeight = iframe.contentWindow.document.body.scrollHeight;
+                       iframe.style.height = contentHeight + 'px';
+                       wrapper = parent_doc.getElementById('wrapper_' + index);
+                       wrapper.style.height = '200px';
+                       wrapHeight = contentHeight + 50;
+                       wrapper.style.height = wrapHeight + 'px';
+                }
+                </script>
     </head>
     <body class='frame'>
         <h1>jestem tryFind.php</h1>
@@ -72,13 +88,15 @@ switch($_POST['rodzaj']) {
 		}
 		//echo $str."<BR>";
 		$rows=db::query('SELECT ID_samochodu FROM Samochod '.$innerjoin.' '.$str.' ORDER BY ID_uzytkownika;');
+		$i = 0;
 		foreach($rows as $row) {
 			//print_r($row); echo "<BR>";
-			echo "<article>
-					<iframe id='content_iframe' name='content_iframe'
-						src='myCars.php?ID_samochodu=".$row['ID_samochodu']."' onLoad='resizeUpdate()'>
+			echo "<article id='wrapper_$i'>
+					<iframe id='content_iframe_$i' name='content_iframe'
+						src='myCars.php?ID_samochodu=".$row['ID_samochodu']."' onLoad='resizeUpdate($i)'>
 					</iframe>
 				</article>";
+			$i = $i + 1;
 		}
 		break;
 }

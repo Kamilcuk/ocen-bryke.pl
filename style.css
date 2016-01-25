@@ -10,7 +10,7 @@ line-height: 1.5;
 body.frame
 {
 background-color: rgba(0, 0, 0, 0);
-height: 2000px;
+height: 100px;
 }
 
 
@@ -157,7 +157,7 @@ iframe
 	
  width: 800px;
  
- min-height: 500px;
+ min-height: 100px;
 	
  border-width: 0px;
 }
