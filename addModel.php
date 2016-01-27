@@ -9,35 +9,29 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
 	</head>
 	<body class='frame'>
-		<h1>jestem addModel.php</h1>
+<br>
 		 <form action="/tryAddModel.php" method="post">
 		 <table>
 			
-			<tr><td><label for="inp">Marka:</label></td>		
-			<td><select name="Marka_nazwa">
+			<tr>
+				<td><label for="inp">Marka:</label></td>		
+				<td><select name="ID_marki">
 <?php //Kamil Cukrowski
-$rows = db::query('select nazwa from Marka;');
+$rows = db::query('select * from Marka order by Nazwa;');
 foreach($rows as $row) {
-	echo "<option>".$row['nazwa']."</option>"."\n";
+	echo "<option value='".$row['ID_marki']."'>".$row['nazwa']."</option>"."\n";
 }
 ?>
-			</select></td></tr>
-
-			<tr><td><label for="inp">Symbol silnika:</label></td>		
-			<td><select name="Silnik_symbol">
-<?php //Kamil Cukrowski
-$rows = db::query('select symbol from Silnik;');
-foreach($rows as $row) {
-	echo "<option>".$row['symbol']."</option>"."\n";
-}
-?>
-			</select></td></tr>
-			
-			</table>
-		
-			<label for="inp">Nazwa modelu:</label>   <input type="text" name="Model_nazwa"><br>
-
-			<input type="submit">
+				</select>
+			</tr><td>
+				<label for="inp">Nazwa modelu:</label>
+			</td><td>
+				<input type="text" name="Model_nazwa">
+			</td></tr>
+			<tr><td>
+					<input type="submit" value='Dodaj model'>
+			</td></tr>
+		</table>
 		</form>
 	</body>
 </html>

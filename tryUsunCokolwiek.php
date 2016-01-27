@@ -7,11 +7,12 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryUsunCokolwiek.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
+//db::setDebug(10); echo $_GET['tabela'].'<BR>'.$_GET['id'].'<BR>';
 
 $ret = false;
 function fatal($str) {
@@ -29,21 +30,16 @@ if( !is_numeric($id) ) {
 	fatal("ID_do_usuniecia to nie numer");
 }
 
-/// BOOM! 
+/// BOOM!
 $ret = $user->actionUsun($_GET['tabela'], $id);
 
 if ( $ret ) {
 	echo "Udalo sie usunać.<br>";
+	przekierowanie(100);
 } else { 
 	echo "Nie udalo sie usunać.<br>";
+	przekierowanie(20000);
 }
-
-				echo "Za chwile nastapi przekierowanie...";	
-				echo "<script type='text/javascript'>
-						setTimeout(function(){
-							window.parent.location.href = window.parent.location.href;
-						}, 1000);</script>";
-			
 		?>
 
     </body>

@@ -9,10 +9,9 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
 	</head>
 		<body class='frame'>
-		<h1>jestem myAccount.php</h1>
+<br>
 		 <div class='Login'>
-	<?php /* Kamil */
-		//db::setDebug(10); 
+		<?php /* Kamil */
 		if ( isset($_GET['ID_uzytkownika']) ) {
 			$info = db::query('select * from Uzytkownik where ID_uzytkownika = "'.
 					db::escape($_GET['ID_uzytkownika']).'";');
@@ -22,29 +21,99 @@
 			}
 			$info = $info[0];
 		} else {
-			$info = $user->getInfo();
+			if ( $user != null ) {
+				$info = $user->getInfo();
+			}
 		}
-		
-		// edit jest prawda jesli jestesmy wlascicielem danych
-		$edit = ( isset($user) && $user->getId() == $info['ID_uzytkownika'] );
+		if ( !isset($info) || $info == null ) {
+			echo 'Blad w wykorzystaniu skryptu <BR>';
+			exit(0);
+		}	
+		/* 4 przyapdki
+		 * 1. gość -> nie może niczego edytować
+		 * 2. użytkownik lub admin i jego konto -> może edytować swoje dane i usuwać konto
+		 * 3. użytkownik i nie swoje konto -> nie może niczego edytować
+		 * 4. admin -> nie może edytować danych i może usuwać każde konto
+		 */
+		if ( $user == null ) {
+			$edit = false;
+			$usun = false;
+		} else if ( $user->getId() == $info['ID_uzytkownika'] ) {
+			$edit = true;
+			$usun = true;
+		} else if ( $user->czyAdmin() ) {
+			$edit = false;
+			$usun = true;
+		} else {
+			$edit = false;
+			$usun = false;
+		}
 	?>
-	
-			<form action="tryEditAccount.php" method="post">
-			<label for="inp">Nazwa użytkownika:</label>
-				<input type="text" placeholder="<?php echo $info["nick"]?>" readonly><br>
-			<label for="inp">e-mail:</label>
-				<input type="e-mail" name="Uzytkownik_e_mail" placeholder="<?php echo $info["e-mail"]?>" 
-					<?php if ( !$edit ) { echo 'readonly'; } ?> ><br>
-			<label for="inp">Admin:</label>
-				<input type="number" placeholder="<?php echo $info['admin']?>" readonly><br>
-				
+		
+			<form action="tryEditAccount.php?typ=edituzytkownika" method="post">
+			<table><tr><td>
+					<label for="inp">Nazwa użytkownika:</label>
+				</td><td>
+					<input type="text" name="name" value="<?php echo $info["nick"]?>" readonly>
+				</td></tr>
+				<tr><td>
+			<?php if ( $usun ) { ?>
+				<tr><td>
+					<label for="inp">e-mail:</label>
+				</td><td>
+					<input type="e-mail" name="Uzytkownik_e_mail" placeholder="<?php echo $info["e-mail"]?>" 
+					<?php  if ( !$edit ){ echo 'readonly'; }?> >
+				</td></tr>
+			<?php } ?>
+				<tr><td>
+					<label for="inp">Admin:</label>
+				</td><td>
+					<input type="text" placeholder="<?php if ( $info['admin'] ) { echo "Tak"; } else { echo "Nie"; } ?>" readonly>
+				</td></tr>	
 			<?php if ( $edit ) { ?>
-			<label for="inp">Wprowadz hasło:</label>
-				<input type="text" name="Uzytkownik_haslo" ><br>
-			<input type="submit" value="Wprowadź zmiany">
+				<tr><td>
+					<label for="inp">Wprowadz hasło:</label>
+				</td><td>
+					<input type="password" name="Uzytkownik_haslo" >
+				</td></tr><tr><td>
+					<input type="submit" value="Wprowadź zmiany">
+			<?php } ?>
+			</td></tr></table>
+			</form>
+			
+			<BR>
+			<?php if ( $edit ) { ?>
+			<form action="tryEditAccount.php?typ=zmienhaslo" method="post">
+				<input type="hidden" name="name" value="<?php echo $info["nick"]?>" readonly>
+			<table><tr><td>
+					<label for="inp">Wprowadz stare hasło:</label>
+				</td><td>
+					<input type="password" name="Uzytkownik_haslo1" >
+				</td></tr><tr><td>
+					<label for="inp">Wprowadz nowe hasło:</label>
+				</td><td>
+					<input type="password" name="Uzytkownik_haslo2" >
+				</td></tr><tr><td>
+					<label for="inp">Nowe hasło ponownie:</label>
+				</td><td>
+					<input type="password" name="Uzytkownik_haslo3" >
+				</td></tr><tr><td>
+					<input type="submit" value="Zmien haslo">
+			</td></tr></table>
 			</form>
 			<?php } ?>
-			
+			<BR>
+			<?php if ($usun) { ?>
+			<a href='tryUsunCokolwiek.php?tabela=uzytkownik&id=<?php echo $info['ID_uzytkownika']; ?>'>Usuń to konto!</a>
+			<?php }?>
+			<br>
+			<?php if ( $user != null && $user->czyAdmin()) {
+				if ( $info['admin'] == 0 ) {
+					echo "<a href='tryEditAccount.php?typ=dajadmina&ID_uzytkownika={$info['ID_uzytkownika']}'; >Daj admina</a>";
+				} else {
+					echo "<a href='tryEditAccount.php?typ=odbierzadmina&ID_uzytkownika={$info['ID_uzytkownika']}'; >Odbierz admina</a>";
+				}
+			}?>
 		 </div>
 	</body>
 </html>

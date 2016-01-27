@@ -6,9 +6,9 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryLogin.php</h1>
+<br>
 
 		<?php
 			if(isset($_POST['name']))
@@ -22,17 +22,13 @@
 				{
 					echo "<div class= 'ok'>Logowanie udane. Witaj, $name <br></div>";
 					$_SESSION['user'] = $user;
+					przekierowanie(500);
 				}
 				else
 				{
 					echo "<div class= 'error'>Logowanie nie powiodlo sie.<br></div>";
+					przekierowanie(20000);
 				}
-
-				echo "Za chwile nastapi przekierowanie...";	
-				echo "<script type='text/javascript'>
-						setTimeout(function(){
-							window.parent.location.href = window.parent.location.href;
-						}, 1000);</script>";
 			}
 		?>
 

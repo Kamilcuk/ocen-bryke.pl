@@ -9,12 +9,17 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
 	</head>
 	<body class='frame'>
-		<h1>jestem addMarka.php</h1>
+<br>
 		
 		 <form action="/tryAddMarka.php" method="post">
 		<table>
-			<label for="inp">Nazwa nowej marki:</label>   <input type="text" name="Marka_nazwa"><br>
-			<input type="submit">
+			<tr><td>
+				<label for="inp">Nazwa nowej marki:</label>
+			</td><td>
+				<input type="text" name="Marka_nazwa"><br>
+			</td></tr><tr><td>
+				<input type="submit" value='Dodaj marke'>
+			</td></tr></table>
 		</form>
 	</body>
 </html>

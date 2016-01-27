@@ -7,9 +7,9 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddZdjecie.php</h1>
+<br>
 		<?php
 			// Kamil Cukrowski, poprzedni plik jest w kamil/test/tryUpload.php <- ta linia do wykasowania jest
 			function fatal($str) {

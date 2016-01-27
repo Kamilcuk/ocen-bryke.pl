@@ -9,12 +9,12 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
 	</head>
 	<body class='frame'>
-		<h1>jestem addSilnik.php</h1>
+<br>
 		
 		 <form action="/tryAddSilnik.php" method="post">
 		<table>
 			<label for="inp">Symbol:</label>   <input type="text" name="Silnik_symbol"><br>
-			<label for="inp">Pojemnosc:</label>   <input type="number" name="Silnik_pojemnosc"><br>
+			<label for="inp">Pojemnosc (w litrach):</label>   <input type="number" name="Silnik_pojemnosc" step="any"><br>
 			<label for="inp">Zasilanie:</label></td>
 			<select name="Silnik_zasilanie">
 <?php //Kamil Cukrowski
@@ -31,7 +31,7 @@ foreach($option_array as $row) {
 			<label for="inp">Moc:</label>   <input type="number" name="Silnik_moc"><br>
 			
 
-			<input type="submit">
+			<input type="submit" value='Dodaj silnik'>
 		</form>
 	</body>
 </html>

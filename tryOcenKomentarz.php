@@ -7,9 +7,9 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddCar.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
 $ret = false;
@@ -67,23 +67,12 @@ switch($_GET['tabela']) {
 }		
 if ( $ret ) {
 	echo 'Udalo sie ocenic '.$_GET['tabela'].'<br>';
+	przekierowanie(500);
 } else { 
 	echo 'Nie udalo sie ocenic '.$_GET['tabela'].'<br>';
+	przekierowanie(20000);
 }
-// i tyle
 		?>
-
-		<?php
-
-				/*echo "Za chwile nastapi przekierowanie...";
-				echo "<script type='text/javascript'>
-					setTimeout(function()
-					{
-						window.parent.location.href = window.parent.location.href;
-					}, 2000);</script>";*/
-			
-		?>
-
     </body>
 </html>
 

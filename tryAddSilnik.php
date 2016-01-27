@@ -7,9 +7,9 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddSilnik.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
 

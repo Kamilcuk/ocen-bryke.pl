@@ -7,9 +7,9 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddWersja.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
 
@@ -21,27 +21,20 @@ if(!isset($_POST['Model_nazwa'])) {
 	fatal("nie podales nazwy modelu");
 }
 if(!isset($_POST['Wersja_nazwa'])) {
-	fatal("nie podales przebieg");
+	fatal("nie podales Wersja_nazwa");
 }
-
-// ID_model rozpoznajemy po nazwie modelu
-$ID_modelu=db::queryone("select * from Model where nazwa = '".
-		db::escape($_POST['Model_nazwa'])."';")['ID_modelu'];
 // dodajemy
 $ret = $user->actionDodaj("Wersja", array(
-		"ID_modelu" => $ID_modelu,
+		"ID_modelu" => $_POST['Model_nazwa'],
 		"nazwa" => $_POST['Wersja_nazwa'],
 ));
 if ( $ret ) {
 	echo 'Udalo sie!<br>';
+	przekierowanie(500);
 } else {
 	echo 'Nie udalo sie!<br>';
+	przekierowanie(3000);
 }
-			
-			echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
-	setTimeout(function() {
-		window.parent.location.href = window.parent.location.href;
-	}, 500);</script>";
 		?>
 
     </body>

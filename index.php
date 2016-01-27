@@ -13,7 +13,7 @@
 			{
 				iframe = document.getElementById('content_iframe');
 				iframe.style.height = '0px';
-				contentHeight = iframe.contentWindow.document.body.scrollHeight;
+				contentHeight = iframe.contentWindow.document.body.scrollHeight + 100;
 				iframe.style.height = contentHeight + 'px';
 				wrapper = document.getElementById('wrapper');
 				wrapper.style.height = '200px';

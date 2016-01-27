@@ -17,31 +17,34 @@
                        contentHeight = iframe.contentWindow.document.body.scrollHeight;
                        iframe.style.height = contentHeight + 'px';
                        wrapper = parent_doc.getElementById('wrapper_' + index);
-                       wrapper.style.height = '200px';
-                       wrapHeight = contentHeight + 50;
+                       wrapper.style.height = '100px';
+                       wrapHeight = contentHeight + 10;
                        wrapper.style.height = wrapHeight + 'px';
                 }
                 </script>
     </head>
     <body class='frame'>
-        <h1>jestem tryFind.php</h1>
+<br>
 <?php
 if ( !isset($_POST['rodzaj']) ) {
-	echo "_POST[rodzaj] = '{$_POST['rodzaj']}' <BR>";
+	//echo "_POST[rodzaj] = '{$_POST['rodzaj']}' <BR>";
+	przekierowanie(500);
 	exit(0);
 }
-//db::setDebug(10);
+//db::setDebug(10); echo 'POST[rodzaij] = '.$_POST['rodzaj'].'<BR>';
 switch($_POST['rodzaj']) {
 	case 'Uzytkownik':
 		$rows=db::query("select * from Uzytkownik where nick like '%".db::escape($_POST['nick'])."%';");
 		//print_r($rows); echo "<BR>";
+		$i = 0;
 		foreach($rows as $row) {
 			//print_r($row); echo "<BR>";
-			echo "<article>
-					<iframe id='content_iframe' name='content_iframe' 
-						src='myAccount.php?ID_uzytkownika=".$row['ID_uzytkownika']."' onLoad='resizeUpdate()'>
+			echo "<article id='wrapper_$i'>
+					<iframe id='content_iframe_$i' name='content_iframe'
+						src='myAccount.php?ID_uzytkownika=".$row['ID_uzytkownika']."' onLoad='resizeUpdate($i)'>
 					</iframe>
 				</article>";
+			$i = $i + 1;
 		}
 		break;
 	case 'Samochod':

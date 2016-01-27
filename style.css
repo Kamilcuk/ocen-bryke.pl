@@ -205,7 +205,7 @@ h5{
 
     
 .Login {
-width: 400px; 
+width: 456px; 
 margin: 0 auto; 
 padding: 2px 0 0;
 border: 1px solid silver;
@@ -226,11 +226,13 @@ a.link
  color: white;
  background-color: #8a0600;
  display: block;
- width: 200px;
+ width: 100px;
  height: 30px;
  text-decoration: none;
  text-align: center;
- padding: 5px;	
+ padding: 0px;	
+ margin-left: 5px;
+ margin-top: 10px;
 }
 
 a.link:hover
@@ -242,7 +244,7 @@ a.link:hover
 label  {
 display: block;
 width: 200px;
-padding: 20px 10px;
+padding: 0px 10px;
 color: #696969;
 font: 18px calibri;
 text-shadow: 0 0 1px silver;
@@ -321,7 +323,7 @@ vertical-align: top;
 
 }
 .row4{
-width: 125px; 	
+width: 225px; 	
 margin: auto; 
 display: block;
 height: 30px;
@@ -372,7 +374,7 @@ a.err2{
  color: white;
  background-color: #8a0600;
  display: block;
- width: 120px;
+ width: 130px;
  height: 30px;
  text-decoration: none;
  text-align: center;
@@ -388,7 +390,7 @@ a.ok2{
  color: white;
  background-color: green;
  display: block;
- width: 120px;
+ width: 130px;
  height: 30px;
  text-decoration: none;
  text-align: center;
@@ -402,12 +404,13 @@ a.ok2:hover
 
 .label2  {
 display: block;
-width: 400px;
-padding: 3px 3px;
+width: auto;
+padding: 4px 4px;
 color: white;
 font-size: 12px;
 background-color: #696969;
 text-shadow: 0 0 1px silver;
+margin-bottom: 5;
 }
 
 a.link2
@@ -442,14 +445,11 @@ a.err3:hover
 {
  background-color: #CC0000;
 }
-.car >  ul{
- width: 500px;	
- margin: auto;
 
- padding: 10px 10px;
- 
-	
+.findphpselect {
+	width: 200px;
 }
+
 .cars {
 display: block;
 margin: auto;

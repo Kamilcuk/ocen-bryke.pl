@@ -6,9 +6,9 @@
 	<head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-	</hed>
+	</head>
 	<body class='frame'>
-        <h1>jestem logout.php</h1>
+<br>
 
 		<?php
 			if(isset($_SESSION["user"]))
@@ -20,13 +20,8 @@
 			session_unset();
 			session_destroy();
 
-			echo "Zostales wylogowany.<br>Za chwile nastapi przekierowanie...";
-
-            echo "<script type='text/javascript'>
-            	setTimeout(function()
-                {
-                   window.parent.location.href = window.parent.location.href;
-                }, 2000);</script>";
+			echo "Zostales wylogowany.<br>";
+        	przekierowanie(500);
 		?>
 	</body>
 </html>

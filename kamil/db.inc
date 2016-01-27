@@ -139,6 +139,17 @@ function getOcena($tabela=NULL, $id=NULL) {
 	return $ret == NULL ? '0' : $ret;
 	
 }
+/**
+ * pomocniczas funkcja przekirowywuje po czasie $czas w ms
+ */
+function przekierowanie($czas = 2000) {
+	echo "Za chwile nastapi przekierowanie...";
+	echo "<script type='text/javascript'>
+					setTimeout(function()
+					{
+						window.parent.location.href = window.parent.location.href;
+					}, ".$czas.");</script>";
+}
 
 register_shutdown_function('db::disconnect');
 db::connect();

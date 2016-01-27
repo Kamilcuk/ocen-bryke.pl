@@ -62,12 +62,19 @@ class user {
 	// ---------------------------
 	function zarejestruj($user, $pass, $email)
 	{
+		if ( strlen($email) == 0 || strlen($user) == 0 || strlen($pass) == 0 ) {
+			return false;
+		}
 		$user = db::escape($user);
 		$pass = db::escape($pass);
 		$email = db::escape($email);
-		$ret = db::queryone('SELECT * FROM `'.$this->table.'` WHERE nick=\''.$user.'\';');
+		$ret = db::query('SELECT * FROM `'.$this->table.'` WHERE nick=\''.$user.'\';');
 		if(!empty($ret)) {
-			return false;
+			return -1;
+		}
+		$ret = db::query('SELECT * FROM `'.$this->table.'` WHERE `e-mail`=\''.$email.'\';');
+		if(!empty($ret)) {
+			return -2;
 		}
 
 		$salt = substr(md5(uniqid(rand(), TRUE)), 0, 32);
@@ -118,15 +125,19 @@ class user {
 		if ( !$this->sprawdzHaslo($this->nick, $oldPass) ) {
 			return false;
 		}
-
-		$pass = db::escape($noweHaslo);
-		if(!empty($ret)) {
+		if ( strlen($noweHaslo) == 0 ) {
 			return false;
 		}
-		$hashedPass = password_hash($pass, PASSWORD_BCRYPT);
 
-		// TO DO : SQL QUERY -----------------------------
-		return false;
+		$pass = $noweHaslo;
+
+		$salt = substr(md5(uniqid(rand(), TRUE)), 0, 32);
+		$saltedPass = $pass . $salt;
+		$hashedPass = password_hash($saltedPass, PASSWORD_BCRYPT);
+
+		return db::queryone('UPDATE '.$this->table." ".
+				" SET salt = '".$salt."', hash = '".$hashedPass."' ".
+				" WHERE ID_uzytkownika = '".$this->getId()."' ;");
 	}
 	
 	// ------------------- Działania -------------------------
@@ -205,6 +216,12 @@ class user {
 			case "Komentarz":
 			case 'Zdjecie';
 				break;
+			case 'Uzytkownik':
+				if ( $id != $this->getId() ) {
+					return;
+				}
+				$this->usun();
+				break;
 			default:
 				echo __FILE__.__LINE__." Nie znaleziono ".$table." do usuniecia. <BR>";
 				return false;
@@ -216,17 +233,24 @@ class user {
 		}
 		if ( $table == "Zdjecie" ) {
 			// kasowanie zdjęcia.
-			$rows = szukaj(array($table.":".db::getFirstColumnName($table).":".$id.":ID_uzytkownika:".$this->getId()));
+			$rows = db::query('select * from Zdjecie where ID_zdjecia = '.$id);
 			$file = '/srv/http/'.$rows[0]['url'];
 			if ( !file_exists($file) ) {
 				echo __FILE__.' cos nie tak, zdjecie '.$file.'nie istnieje! <BR>';
+				return false;
 			}
 			if ( !unlink($file) ) {
 				echo __FILE__.' Error podczas usuwania zdjęcia '.$file.' <BR>';
+				return false;
 			}
 		}
-		return db::deleteFrom($table,
-				"`".db::getFirstColumnName($table)."` = '".$id."' AND `ID_uzytkownika` = '".$this->getId()."'");
+		if ( !$this->czyAdmin() ) {
+			return db::deleteFrom($table,
+					"`".db::getFirstColumnName($table)."` = '".$id."' AND `ID_uzytkownika` = '".$this->getId()."'");
+		} else {
+			return db::deleteFrom($table,
+					"`".db::getFirstColumnName($table)."` = '".$id."'");
+		}
 	}
 	function actionSprawdzCzyMoje($table, $id) {
 		if ( !$this->zalogowany ) return false;

@@ -7,14 +7,15 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddCar.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
 
 function fatal($str) {
 	echo $str.'</br>';
+	przekierowanie(20000);
 	exit(-1);
 }
 if(!isset($_POST['Model_nazwa'])) {
@@ -62,26 +63,19 @@ $ret = $user->actionDodaj("Samochod", array(
 
 // dodajemy
 $ret = $user->actionDodaj("Samochod", array(
-		"ID_modelu" => $_POST['Model_nazwa'],
 		"ID_wersji" => $_POST['Wersja_nazwa'],
 		"ID_silnika" => $_POST['Silnik_symbol'],
-		"ID_marki" =>$_POST['Marka_nazwa'],
 		"rok_produkcji" => $_POST['rok_produkcji'],
 		"przebieg" => $_POST['przebieg'],
 ));
 
 if ( $ret ) {
 	echo 'Udalo sie!<br>';
-	$timeout=2000;
+	przekierowanie(500);
 } else {
 	echo 'Nie udalo sie!<br>';
-	$timeout=20000;
+	przekierowanie(20000);
 }
-
-echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
-	setTimeout(function() {
-		window.parent.location.href = window.parent.location.href;
-	}, ".$timeout.");</script>";
 ?>
 
     </body>

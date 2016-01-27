@@ -52,20 +52,20 @@ function onclickModel() {
 	}
 	
 	// znajdz ID_silnika na podstawie ID_modelu
-	for(var i=silniki.length-1;i>-1;--i) {
-		if ( silniki[i].ID_modelu == ID_modelu )
-			break;
-	}
-	if ( i == -1 ) {
-		document.getElementById("debug").innerHTML = 
-			'Blad w bazie danych! ID_modelu:'+ID_modelu+' i:'+i+"<BR>";
-		return;
-	}
-	var ID_silnika = silniki[i].ID_silnika;
-	for(var i=Silnik_symbol.options.length-1;i>-1;--i) {
-		var option_Silnik_symbol = Silnik_symbol.options[i];
-		option_Silnik_symbol.disabled = option_Silnik_symbol.value != ID_silnika;
-	}
+	//for(var i=silniki.length-1;i>-1;--i) {
+//		if ( silniki[i].ID_modelu == ID_modelu )
+//			break;
+//	}
+//	if ( i == -1 ) {
+		//document.getElementById("debug").innerHTML = 
+//			'Blad w bazie danych! ID_modelu:'+ID_modelu+' i:'+i+"<BR>";
+		//return;
+	//}
+	//var ID_silnika = silniki[i].ID_silnika;
+	//for(var i=Silnik_symbol.options.length-1;i>-1;--i) {
+//		var option_Silnik_symbol = Silnik_symbol.options[i];
+		//option_Silnik_symbol.disabled = option_Silnik_symbol.value != ID_silnika;
+	//}
 	
 }
 
@@ -78,7 +78,7 @@ echo "var silniki = ".json_encode($rows)."; \n";
 
 	</head>
 	<body class='frame'>
-		<h1>jestem addCar.php</h1>
+<br>
 <span id='test'></span>
 		
 		 <form action="/tryAddCar.php" method="post">
@@ -139,7 +139,7 @@ foreach($rows as $row) {
 			<label for="inp">Rok produkcji:</label> <input type="number" name="rok_produkcji" placeholder=1999 ><br>
 			<label for="inp">przebieg:</label><input type="number" name="przebieg" placeholder=10000 ><br>
 
-			<input type="submit">
+			<input type="submit" value='Dodaj samochod'>
 		</form>
 	</body>
 </html>

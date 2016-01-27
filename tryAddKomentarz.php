@@ -7,9 +7,9 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddKomentarz.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
 
@@ -31,13 +31,11 @@ $ret = $user->actionDodaj("Komentarz", array(
 ));
 if ( $ret ) {
 	echo 'Udalo sie!<br>';
+	przekierowanie(100);
 } else {
 	echo 'Nie udalo sie!<br>';
+	przekierowanie(20000);
 }
-			echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
-	setTimeout(function() {
-		window.parent.location.href = window.parent.location.href;
-	}, 1000);</script>";
 		?>
     </body>
 </html>

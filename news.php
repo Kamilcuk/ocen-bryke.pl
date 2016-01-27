@@ -9,8 +9,8 @@
         <link rel='stylesheet' type='text/css' href='style.css'>
 	</head>
 	<body class='frame'>
-		<h1>jestem news.php</h1>
-		Najnowsze dodane samochody:<br>
+<br>
+		Najnowsze dodane zdjecia:<br>
 		
 		<?php //Kamil
 $pics = db::query('select * from Zdjecie order by data_dodania desc');
@@ -32,8 +32,20 @@ foreach($pics as $pic) {
     	'Ocena samochodu to: <b>'.getOcena('Samochod',$pic['ID_samochodu']).
     	'</b></td></tr>';
 		
-	echo '<tr><td class="row" colspan="3">Zdjecie nalezy do samochodu marki: '.
-			'<b>'.$marka['nazwa'].'</b></td>';
+	echo '<tr><td class="row" colspan="3">Zdjecie samochodu: '.'<b>'.
+			'<a href="myCars.php?ID_samochodu='.$pic['ID_samochodu'].'">'.
+			$marka['nazwa'].' '.$model['nazwa'].'</a> Wersja: '.$wersja['nazwa'].'</b></td>';
+	
+	/*echo '<tr><td class="row4">Marka:'.'</td><td class="row4">'.$marka['nazwa'].'</td></tr>'."\n";
+	echo '<tr><td class="row4">Model:'.'</td><td class="row4">'.$model['nazwa'].'</td></tr>'."\n";
+	echo '<tr><td class="row4">Wersja:'.'</td><td class="row4">'.$wersja['nazwa'].'</td></tr>'."\n";
+	echo '<tr><td class="row4">Symbol silnika:'.'</td><td class="row4">'.$silnik['symbol'].'</td></tr>'."\n";
+	echo '<tr><td class="row4">Pojemnosc:'.'</td><td class="row4">'.$silnik['pojemnosc'].'</td></tr>'."\n";
+	echo '<tr><td class="row4">Zasilanie:'.'</td><td class="row4">'.$silnik['zasilanie'].'</td></tr>'."\n";
+	echo '<tr><td class="row4">Moc:'.'</td><td class="row4">'.$silnik['moc'].'</td></tr>'."\n";	
+	echo '<tr><td class="row4">Przebieg:'.'</td> <td class="row4">'.$car['przebieg'].'</td>'."\n";
+	echo '<tr><td class="row4">Rok produkcji:'.'</td><td class="row4">'.$car['rok_produkcji'].'</td>'."\n";*/
+	
     echo '</tr>';
 	echo '<td class="img"colspan="3"> <img src="'.$pic['url'].'" title="'.$pic['opis'].'" style="max-width:300px;max-height:300px;">'.
 		'</td></tr>';
@@ -43,8 +55,8 @@ foreach($pics as $pic) {
     if ( $user != NULL ) {
     	echo '<td class="row2" colspan="2">'.'Dodaj komentarz do samochodu: '.
 	    	'<form action="/tryAddKomentarz.php?ID_zdjecia='.$pic['ID_zdjecia'].'" method="post">'.
-    		'<textarea name="tresc" cols="60" rows="3"></textarea>'.'<br>'.
-    		'<input type="submit">'.
+    		'<textarea style="resize:both" name="tresc" cols="60" rows="1"></textarea>'.'<br>'.
+    		'<input type="submit" value="Dodaj komentarz">'.
     		'</form>'.
     		'</td>';
     	
@@ -56,7 +68,14 @@ foreach($pics as $pic) {
     		$tmp = db::query("select * from Ocena_samochodu where ID_uzytkownika = ".$user->getID().
     				' AND ID_samochodu = '.$samochod['ID_samochodu']);
     		if ( count($tmp) != 0 ) {
-		    	echo 'Twoja ocena tego samochodu to: <b>'.$tmp[0]['wartosc'].'</b><br>';
+    			echo 'Oceniłeś ten samochód <br>';
+    			if ( $tmp[0]['wartosc'] == -1 ) {
+    				echo 'negatywnie';
+    			} else {
+    				echo 'pozytywnie';
+    			}
+    		} else {
+    			echo 'Ten samochód nie <br>ma jeszcze Twojej oceny.';
     		}
     		echo '<a class = "ok2" href="tryOcenKomentarz.php?ocena=1&tabela=Samochod&id='.$samochod['ID_samochodu'].
 	    		'">Ocen pozytywnie samochod</a>';
@@ -70,14 +89,23 @@ foreach($pics as $pic) {
     $komentarze = db::query('select * from Komentarz where ID_zdjecia = '.$pic['ID_zdjecia']
     		.' order by data_dodania desc');
     foreach($komentarze as $kom) {
+    	$komentarzUzytkownik = db::query('select * from Uzytkownik where ID_uzytkownika = '.$kom['ID_uzytkownika'])[0];
     	echo '<tr>';
-    	echo '<td>Komentarz uzytkownika: <br>'.
-	    	db::query('select * from Uzytkownik where ID_uzytkownika = '.$kom['ID_uzytkownika'])[0]['nick'].
-	    	'<br> dodany w dniu:<br>
+    	/*echo '<td>'.
+	    	"<a href='myAccount.php?ID_uzytkownika={$komentarzUzytkownik['ID_uzytkownika']}'>{$komentarzUzytkownik['nick']}</a>".
+	    	'<br>
 			'.$kom['data_dodania'].
 	    	'<br> Ocena komentarza: '.getOcena('Komentarz',$kom['ID_komentarza']).
-	    	'</td>';
-    	echo '<td  class="row3"><label class="label2"> Tresc komentarza: </label><br>'.$kom['tresc'].'</td>';
+	    	'</td>';*/
+    	echo '<td class="row3" colspan="2">'.
+    			'<label class="label2">'.
+    				$kom['data_dodania'].
+    				' użytkownk '.
+    				"<b><a href='myAccount.php?ID_uzytkownika={$komentarzUzytkownik['ID_uzytkownika']}'>{$komentarzUzytkownik['nick']}</a></b>".
+    				' napisał/-a: (Ocena komentarza: '.
+    				getOcena('Komentarz',$kom['ID_komentarza']).
+    				')</label>'.
+    		'<div style="padding: 4px 4px;">'.nl2br($kom['tresc']).'</div></td>';
     	
     	echo '<td>';
     	if ( $user != NULL ) {

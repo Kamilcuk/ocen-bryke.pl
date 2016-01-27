@@ -7,45 +7,31 @@
     <head>
         <title>Oce&#324;-bryke.pl</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-    </hed>
+    </head>
     <body class='frame'>
-        <h1>jestem tryAddCar.php</h1>
+<br>
         
         <?php // Kamil Cukrowski
 
 function fatal($str) {
 	echo $str.'</br>';
+	przekierowanie(20000);
 	exit(-1);
 }
-if(!isset($_POST['Marka_nazwa'])) {
-	fatal("nie podales Marka_nazwa");
-}
-if(!isset($_POST['Silnik_symbol'])) {
+if( !isset($_POST['ID_marki']) || !isset($_POST['Model_nazwa']) ) {
 	fatal("nie podales Silnik_symbol");
 }
-// silnik rozpoznajemy po symbolu
-$ID_silnika=db::queryone("select * from Silnik where symbol = '".
-		db::escape($_POST['Silnik_symbol'])."';")['ID_silnika'];
-// marke rozpoznajemy 
-$ID_marki=db::queryone("select * from Marka where nazwa = '".
-		db::escape($_POST['Marka_nazwa'])."';")['ID_marki'];
 // dodajemy
 $ret = $user->actionDodaj("Model", array(
-		"ID_marki" => $ID_marki,
-		"ID_silnika" => $ID_silnika,
+		"ID_marki" => $_POST['ID_marki'],
 		"nazwa" => $_POST['Model_nazwa'],
 ));
 if ( $ret ) {
 	echo 'Udalo sie!<br>';
+	przekierowanie(500);
 } else {
 	echo 'Nie udalo sie!<br>';
 }
-
-			
-			echo "Za chwile nastapi przekierowanie...<script type='text/javascript'>
-	setTimeout(function() {
-		window.parent.location.href = window.parent.location.href;
-	}, 500);</script>";
 		?>
 
     </body>
